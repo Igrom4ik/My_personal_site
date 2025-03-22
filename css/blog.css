@@ -1,0 +1,199 @@
+/* ===================== */
+/* Blog Editor ArtStation Style */
+/* ===================== */
+
+body {
+    margin: 0;
+    background-color: #121418;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.editor-dark {
+    background-color: #121418;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.editor-wrapper {
+    background-color: #1c1f26;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    max-width: 700px;
+    width: 100%;
+}
+
+.editor-wrapper h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.editor-wrapper input[type="text"],
+.editor-wrapper input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #2a2d36;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Панель инструментов редактора */
+#editor-toolbar {
+    background-color: #2a2d36;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+/* Кастомизация Quill */
+.ql-toolbar.ql-snow {
+    background-color: #2a2d36;
+    border: none;
+    color: #fff;
+}
+
+.ql-toolbar button,
+.ql-toolbar .ql-picker {
+    color: #fff;
+    fill: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar .ql-picker:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ql-toolbar button.ql-active,
+.ql-toolbar .ql-picker-label.ql-active {
+    background-color: #1890ff;
+    color: #fff;
+}
+
+.ql-container.ql-snow {
+    border: none;
+}
+
+.ql-editor {
+    color: #fff;
+}
+
+/* Область редактирования */
+#editor {
+    height: 300px;
+    background-color: #1e2129;
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #3a3d45;
+    padding: 12px;
+}
+
+/* Кнопка */
+.editor-wrapper button {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.editor-wrapper button:hover {
+    background-color: #007acc;
+}
+
+.editor-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1c1f26;
+    border-right: 1px solid #2a2d36;
+    padding: 20px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topic-name {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.post-list {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.post-item {
+    cursor: pointer;
+    padding: 4px 0;
+    color: #aaa;
+}
+
+.post-item:hover {
+    color: #fff;
+}
+
+.post-item.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+.add-topic {
+    margin-top: 20px;
+    padding: 8px 12px;
+    width: 100%;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-topic:hover {
+    background-color: #007acc;
+}
+/* Фикс иконок Quill */
+.ql-toolbar button svg,
+.ql-toolbar .ql-picker-label svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}

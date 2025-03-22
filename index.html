@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игорь Унгурянов | 3D Environment Artist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="index.html">Igor Unguryanov</a>
+        </div>
+
+        <div class="settings-panel">
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <select id="languageSelect" class="language-select">
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+
+        <div class="hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="mobileMenu">
+            <ul class="lang-ru">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#blog">Блог</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <ul class="lang-en" style="display: none;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="lang-zh" style="display: none;">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#portfolio">作品集</a></li>
+                <li><a href="#blog">博客</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <h1>Игорь Унгурянов</h1>
+        <p>3D Environment Artist</p>
+        <a href="#portfolio" class="btn">Смотреть работы</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>Обо мне</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="images/profile.jpg" alt="Игорь Унгурянов">
+            </div>
+            <div class="about-text">
+                <h3>3D Environment Artist с опытом работы в игровой индустрии</h3>
+                <p>Я специализируюсь на создании реалистичных и стилизованных окружений для игр и визуализаций. Мой опыт включает работу с различными 3D-пакетами и игровыми движками, что позволяет мне создавать высококачественные ассеты и окружения для различных проектов.</p>
+                <p>Я стремлюсь постоянно совершенствовать свои навыки и следить за последними тенденциями в индустрии, чтобы создавать впечатляющие и технически оптимизированные работы.</p>
+
+                <div class="skills">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>3ds Max</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Blender</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Zbrush</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Substance Painter</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Unreal Engine</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>Портфолио</h2>
+        </div>
+
+        <div class="portfolio-filter lang-ru">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="environments">Окружения</button>
+            <button class="filter-btn" data-filter="props">Пропсы</button>
+            <button class="filter-btn" data-filter="concepts">Концепты</button>
+        </div>
+
+        <div class="portfolio-filter lang-en" style="display: none;">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="environments">Environments</button>
+            <button class="filter-btn" data-filter="props">Props</button>
+            <button class="filter-btn" data-filter="concepts">Concepts</button>
+        </div>
+
+        <div class="portfolio-filter lang-zh" style="display: none;">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="environments">环境</button>
+            <button class="filter-btn" data-filter="props">道具</button>
+            <button class="filter-btn" data-filter="concepts">概念</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="environments">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-1.jpg" alt="Проект 1">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Лесной храм</h3>
+                    <a href="portfolio/work-1.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="props">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-2.jpg" alt="Проект 2">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Средневековое оружие</h3>
+                    <a href="portfolio/work-2.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="environments">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-3.jpg" alt="Проект 3">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Городская улица</h3>
+                    <a href="portfolio/work-3.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="concepts">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-4.jpg" alt="Проект 4">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Концепт фантастического города</h3>
+                    <a href="portfolio/work-4.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="props">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-5.jpg" alt="Проект 5">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Научная лаборатория</h3>
+                    <a href="portfolio/work-5.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="environments">
+                <div class="portfolio-img">
+                    <img src="images/portfolio/work-6.jpg" alt="Проект 6">
+                </div>
+                <div class="portfolio-overlay">
+                    <h3>Подводный мир</h3>
+                    <a href="portfolio/work-6.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section id="blog">
+    <div class="container">
+        <div class="section-title">
+            <h2>Блог</h2>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog/post-1.jpg" alt="Блог 1">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">22 Марта, 2025</div>
+                    <h3 class="blog-title">Как создать реалистичное освещение в Unreal Engine 5</h3>
+                    <p>В этой статье я расскажу о техниках создания реалистичного освещения в Unreal Engine 5 с использованием новой системы Lumen.</p>
+                    <a href="blog/post-1.html" class="read-more">Читать далее</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog/post-2.jpg" alt="Блог 2">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">15 Марта, 2025</div>
+                    <h3 class="blog-title">Оптимизация моделей для игровых движков</h3>
+                    <p>Рассмотрим основные принципы оптимизации 3D-моделей для использования в играх и повышения производительности.</p>
+                    <a href="blog/post-2.html" class="read-more">Читать далее</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="images/blog/post-3.jpg" alt="Блог 3">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">5 Марта, 2025</div>
+                    <h3 class="blog-title">Мой опыт работы над проектом AAA-игры</h3>
+                    <p>Делюсь своим опытом и впечатлениями от работы над крупным игровым проектом в качестве environment artist.</p>
+                    <a href="blog/post-3.html" class="read-more">Читать далее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Контакты</h2>
+        </div>
+
+        <div class="contact-content">
+            <div>
+                <div class="contact-info">
+                    <h3>Свяжитесь со мной</h3>
+                    <p>Если вы заинтересованы в сотрудничестве или у вас есть вопросы - не стесняйтесь обращаться.</p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0f9f7ffe2bee5fef7e5e2e9f1feffe6d0f5e8f1fde0fcf5bef3fffd">[email&#160;protected]</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p>+7 (999) 123-45-67</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Локация</h4>
+                            <p>Москва, Россия</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Ваше имя" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Ваш Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Тема">
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Ваше сообщение" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="https://www.artstation.com/igorunguryanov" target="_blank" rel="noopener noreferrer" title="ArtStation">
+                <i class="fab fa-artstation"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/igorunguryanov" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/igorunguryanov" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/@igorunguryanov" target="_blank" rel="noopener noreferrer" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2025 Игорь Унгурянов. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- JavaScript файлы -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="js/main.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9248a39bf80253cd',t:'MTc0MjY3NzQ0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

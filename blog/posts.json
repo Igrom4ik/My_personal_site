@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Как создать реалистичное освещение",
+    "date": "2025-03-22",
+    "filename": "post-1.html",
+    "image": "images/blog/post-1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Оптимизация моделей",
+    "date": "2025-03-20",
+    "filename": "post-2.html",
+    "image": "images/blog/post-2.jpg"
+  }
+]
