@@ -1,5 +1,3 @@
-// blog-editor.js
-
 let quill;
 
 const blogPosts = {
@@ -25,6 +23,7 @@ const blogPosts = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+    // Инициализация Quill
     quill = new Quill('#editor', {
         theme: 'snow',
         placeholder: 'Напишите что-нибудь...',
