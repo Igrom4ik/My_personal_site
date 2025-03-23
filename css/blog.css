@@ -494,3 +494,10 @@ html, body {
         width: 100%; /* Кнопки на всю ширину */
     }
 }
+
+/* Стилизация drag-зоны */
+#editor.drag-over {
+    outline: 2px dashed #1890ff;
+    outline-offset: -8px;
+    background-color: #1a1f28;
+}

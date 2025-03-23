@@ -102,6 +102,43 @@ window.addEventListener('DOMContentLoaded', () => {
     // И при изменении размера окна
     window.addEventListener('resize', fixScrollbars);
 
+    // Добавляем обработку drag-and-drop
+    const editorEl = document.querySelector('#editor');
+
+    editorEl.addEventListener('dragover', e => {
+        e.preventDefault();
+        editorEl.classList.add('drag-over');
+    });
+
+    editorEl.addEventListener('dragleave', () => {
+        editorEl.classList.remove('drag-over');
+    });
+
+    editorEl.addEventListener('drop', e => {
+        e.preventDefault();
+        editorEl.classList.remove('drag-over');
+
+        const files = Array.from(e.dataTransfer.files);
+        files.forEach(file => {
+            if (file.type.startsWith('image/') || file.type.startsWith('video/')) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const range = quill.getSelection(true);
+                    if (file.type.startsWith('image/')) {
+                        quill.insertEmbed(range.index, 'image', reader.result);
+                    } else if (file.type.startsWith('video/')) {
+                        const videoTag = `<video controls style="max-width: 100%; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.4);">
+                            <source src="${reader.result}" type="${file.type}">
+                            Ваш браузер не поддерживает видео.
+                        </video><p></p>`;
+                        quill.clipboard.dangerouslyPasteHTML(range.index, videoTag);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+
     // Обработчик для кнопки публикации
     const submitBtn = document.getElementById('submit-post');
     if (submitBtn) {
