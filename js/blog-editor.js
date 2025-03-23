@@ -42,6 +42,30 @@ function addTopicClickHandler(topicElement) {
     });
 }
 
+// Функция для исправления прокрутки
+function fixScrollbars() {
+    // Получаем ссылки на DOM элементы
+    const quillContainer = document.querySelector('.ql-container');
+    const quillEditor = document.querySelector('.ql-editor');
+    const editorDiv = document.querySelector('#editor');
+
+    if (quillContainer) {
+        // Убираем прокрутку с контейнера
+        quillContainer.style.overflow = 'hidden';
+    }
+
+    if (editorDiv) {
+        // Убираем прокрутку с div#editor
+        editorDiv.style.overflow = 'hidden';
+    }
+
+    if (quillEditor) {
+        // Оставляем прокрутку только на редакторе
+        quillEditor.style.maxHeight = '400px';
+        quillEditor.style.overflowY = 'auto';
+    }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     quill = new Quill('#editor', {
         theme: 'snow',
@@ -68,6 +92,15 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Применяем исправление прокрутки после инициализации
+    fixScrollbars();
+
+    // Также применяем при изменении контента
+    quill.on('text-change', fixScrollbars);
+
+    // И при изменении размера окна
+    window.addEventListener('resize', fixScrollbars);
 
     // Обработчик для кнопки публикации
     const submitBtn = document.getElementById('submit-post');
