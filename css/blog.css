@@ -11,12 +11,10 @@
     font-style: normal;
 }
 
+/* Основные стили для страницы */
 html, body {
     height: 100%;
     margin: 0;
-}
-
-body {
     background-color: #121418;
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -39,9 +37,8 @@ body {
     width: 100%;
     max-width: 1200px;
     padding-top: 40px;
-    gap: 5px;
+    gap: 20px;
     align-items: flex-start;
-    height: auto; /* Высота по содержимому */
 }
 
 /* Левая панель */
@@ -49,14 +46,18 @@ body {
     width: 250px;
     background-color: #1c1f26;
     padding: 20px;
-    align-self: flex-start; /* Начинаем сверху */
-    height: 90vh; /* Можно задать конкретное значение, например 100vh или больше */
-    min-height: 400px; /* Минимальная начальная высота */
-    resize: vertical; /* Очень важно - разрешает пользователю изменять высоту */
-    /*overflow-y: auto; /* Добавляем прокрутку, если содержимое не помещается */
     border-radius: 12px;
-    /* Нижняя граница с небольшой "ручкой" для изменения размера */
-    /*border-bottom: 10px solid #2a2d36;*/
+    align-self: flex-start;
+    min-height: 1050px;
+    height: auto; /* Высота будет определяться содержимым */
+    resize: none; /* Отключаем возможность изменения размера пользователем */
+    overflow-y: auto; /* Добавляем прокрутку при необходимости */
+    position: relative;
+}
+
+/* Скрываем стандартный ресайзер в WebKit браузерах */
+.sidebar::-webkit-resizer {
+    display: none;
 }
 
 .sidebar h2 {
@@ -75,11 +76,13 @@ body {
     font-weight: bold;
     margin-top: 10px;
     display: block;
+    cursor: pointer;
 }
 
 .post-list {
     list-style: none;
     padding-left: 15px;
+    margin: 0;
 }
 
 .post-item {
@@ -118,8 +121,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-self: flex-start; /* Прикрепляем к верху */
-    height: auto; /* Высота по содержимому */
+    align-self: flex-start;
+    height: auto;
 }
 
 /* Центральная панель */
@@ -129,7 +132,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
     width: 700px;
-    min-height: 50px;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -152,85 +155,172 @@ body {
     border-radius: 8px;
     color: #fff;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 /* Панель инструментов редактора */
 #editor-toolbar {
-    background-color: #2a2d36;
-    border: none;
-    border-radius: 8px 8px 0 0;
-    padding: 8px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    padding: 4px 6px;
+    justify-content: flex-start;
+    background-color: #2a2d36;
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
-/* Кастомизация Quill */
+/* Стиль для полосы прокрутки панели (если она не помещается) */
+#editor-toolbar::-webkit-scrollbar {
+    height: 4px;
+}
+
+#editor-toolbar::-webkit-scrollbar-track {
+    background: #2a2d36;
+}
+
+#editor-toolbar::-webkit-scrollbar-thumb {
+    background-color: #3a3d45;
+    border-radius: 4px;
+}
+
+/* Стили для панели инструментов */
 .ql-toolbar.ql-snow {
     background-color: #2a2d36;
     border: none;
     border-radius: 8px 8px 0 0;
-    padding: 10px;
+    padding: 8px 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 3px;
+    width: 100%;
+    min-height: 40px;
 }
 
-/* Исправляем хаотичную сетку кнопок в Quill */
-.ql-toolbar .ql-formats {
+/* Удаляем стандартные стили Quill, которые могут конфликтовать */
+.ql-toolbar.ql-snow * {
+    box-sizing: border-box;
+}
+
+/* Группы кнопок */
+.ql-formats {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin-right: 10px;
+    gap: 5px;
+    margin-right: 8px;
 }
 
-/* Сохраняем стили для кнопок и селектов */
-.ql-toolbar button,
-.ql-toolbar .ql-picker-label,
-.ql-toolbar .ql-picker-item {
-    color: #fff;
+/* Стили для кнопок */
+.ql-toolbar button {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
-    border: none;
+    border: 1px solid #3a3d45;
+    border-radius: 4px;
     cursor: pointer;
-    padding: 6px;
-    font-size: 16px;
 }
 
-.ql-toolbar button:hover,
-.ql-toolbar .ql-picker:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.ql-toolbar button.ql-active,
-.ql-toolbar .ql-picker-label.ql-active {
-    background-color: #1890ff;
-    color: #fff;
-}
-
+/* Выпадающие списки */
 .ql-toolbar .ql-picker {
-    color: inherit;
+    height: 24px;
+    font-size: 13px;
+    margin-right: 4px;
 }
 
-/* Поддержка иконок Quill через ::before */
-.ql-toolbar button::before,
-.ql-toolbar .ql-picker-label::before,
-.ql-toolbar .ql-picker-item::before {
-    font-family: inherit !important;
-    font-size: 16px;
+/* Надписи в выпадающих списках */
+.ql-toolbar .ql-picker-label {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    border: 1px solid #3a3d45;
+    border-radius: 4px;
+    height: 24px;
+    font-size: 13px;
     color: #fff;
-    font-style: normal;
-    font-weight: normal;
-    text-transform: none;
-    line-height: 1;
+}
+
+/* Иконки SVG */
+.ql-toolbar button svg {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+/* Активное состояние кнопок */
+.ql-toolbar button.ql-active,
+.ql-toolbar .ql-picker-label.ql-active,
+.ql-toolbar .ql-picker-item.ql-selected {
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+}
+
+/* Форматирование при наведении */
+.ql-toolbar button:hover,
+.ql-toolbar .ql-picker-label:hover {
+    background-color: #3a3d45;
+}
+
+/* Выпадающее меню */
+.ql-toolbar .ql-picker-options {
+    background-color: #2a2d36;
+    border: 1px solid #3a3d45;
+    padding: 5px 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ql-toolbar .ql-picker-options .ql-picker-item {
+    color: #fff;
+    padding: 5px 8px;
+    font-size: 13px;
+}
+
+.ql-toolbar .ql-picker-options .ql-picker-item:hover {
+    background-color: #3a3d45;
+}
+
+/* Исправляем цвет иконок */
+.ql-toolbar button svg path {
+    fill: #fff;
+}
+
+/* Переопределяем некоторые стили Quill по умолчанию */
+.ql-snow .ql-stroke {
+    stroke: #fff;
+}
+
+.ql-snow .ql-fill {
+    fill: #fff;
+}
+
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+    stroke: #fff;
+}
+
+.ql-snow.ql-toolbar button:hover .ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-fill {
+    fill: #fff;
+}
+
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+    border-color: #1890ff;
 }
 
 /* Контейнер и редактор */
 .ql-container.ql-snow {
     border: none;
-    background-color: #1e2129;
-    border-radius: 0 0 8px 8px;
-    border: 1px solid #3a3d45;
+    font-size: 14px;
 }
 
 .ql-editor {
@@ -239,19 +329,25 @@ body {
 
 /* Область редактирования */
 #editor {
-    min-height: 200px;
-    overflow-y: auto;
     background-color: #1e2129;
     color: #fff;
     border-radius: 0 0 8px 8px;
     border: 1px solid #3a3d45;
     padding: 12px;
+    min-height: 150px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Кнопка */
-.editor-wrapper button {
-    display: block;
-    margin: 100px auto 0;
+/* Стили для кнопок действий */
+.editor-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.submit-btn {
     background-color: #1890ff;
     color: #fff;
     border: none;
@@ -259,62 +355,41 @@ body {
     border-radius: 8px;
     font-weight: bold;
     font-size: 16px;
-    transition: 0.3s;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.editor-wrapper button:hover {
+.submit-btn:hover {
     background-color: #007acc;
 }
 
-/* Стили для выпадающего меню (фикс белого фона) */
-.ql-toolbar .ql-picker-options {
-    background-color: #2a2d36;
-    border: 1px solid #3a3d45;
-}
-
-.ql-toolbar .ql-picker-options .ql-picker-item {
+.cancel-btn {
+    background-color: #3a3d45;
     color: #fff;
-    padding: 5px 10px;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.ql-toolbar .ql-picker-options .ql-picker-item:hover {
-    background-color: #1890ff;
-    color: #fff;
-}
-
-/* Фикс белой подложки и выпадающего списка Quill */
-.ql-toolbar .ql-picker {
-    background-color: #2a2d36 !important;
-    border: 1px solid #3a3d45 !important;
-}
-
-.ql-toolbar .ql-picker-label {
-    background-color: #2a2d36 !important;
-    color: #fff !important;
-}
-
-.ql-toolbar .ql-picker-options {
-    background-color: #2a2d36 !important;
-    border: 1px solid #3a3d45;
-}
-
-.ql-toolbar .ql-picker-item {
-    color: #fff;
-    padding: 5px 10px;
-}
-
-.ql-toolbar .ql-picker-item:hover {
-    background-color: #1890ff;
-    color: #fff;
+.cancel-btn:hover {
+    background-color: #4a4d55;
 }
 
 /* Для Mozilla Firefox - специальный стиль для возможности растягивания */
 @-moz-document url-prefix() {
     .sidebar {
-        overflow-y: scroll;
+        overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: #3a3d45 #1c1f26;
+    }
+
+    /* Дополнительные стили для скрытия индикатора ресайза в Firefox */
+    .sidebar::-moz-resizer {
+        opacity: 0;
     }
 }
 
@@ -338,6 +413,26 @@ body {
     border-radius: 0 0 4px 0;
 }
 
+/* Адаптивность для мобильных устройств */
+@media (max-width: 576px) {
+    .ql-toolbar.ql-snow {
+        overflow-x: scroll;
+    }
+
+    .ql-toolbar .ql-formats {
+        margin-right: 5px;
+    }
+
+    .ql-toolbar button {
+        width: 24px;
+        margin-right: 2px;
+    }
+
+    .ql-toolbar .ql-picker {
+        margin-right: 2px;
+    }
+}
+
 /* Добавляем медиа-запрос для мобильных устройств */
 @media (max-width: 768px) {
     .editor-layout {
@@ -354,5 +449,13 @@ body {
 
     .editor-wrapper {
         width: calc(100% - 60px); /* С учетом внутренних отступов */
+    }
+
+    .editor-actions {
+        flex-direction: column;
+    }
+
+    .cancel-btn, .submit-btn {
+        width: 100%;
     }
 }

@@ -22,43 +22,78 @@ const blogPosts = {
     ]
 };
 
+// Функция для очистки формы и снятия выделения с постов
+function clearForm() {
+    document.getElementById('post-title').value = '';
+    document.getElementById('post-date').value = '';
+    if (quill) {
+        quill.root.innerHTML = '';
+    }
+
+    // Снимаем выделение с активного поста
+    document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
+}
+
+// Функция для добавления обработчика клика на темы
+function addTopicClickHandler(topicElement) {
+    topicElement.addEventListener('click', function() {
+        const postList = this.nextElementSibling;
+        postList.style.display = postList.style.display === 'none' ? 'block' : 'none';
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-    // Инициализация Quill
     quill = new Quill('#editor', {
         theme: 'snow',
         placeholder: 'Напишите что-нибудь...',
         modules: {
-            toolbar: '#editor-toolbar'
+            toolbar: {
+                container: '#editor-toolbar',
+                handlers: {
+                    'link': function(value) {
+                        if (value) {
+                            var href = prompt('Введите URL:');
+                            this.quill.format('link', href);
+                        } else {
+                            this.quill.format('link', false);
+                        }
+                    },
+                    'image': function() {
+                        var url = prompt('Введите URL изображения:');
+                        if(url) {
+                            this.quill.insertEmbed(this.quill.getSelection().index, 'image', url);
+                        }
+                    }
+                }
+            }
         }
     });
 
-    // Устанавливаем начальный режим "Создать"
-    document.querySelector('.mode-label').textContent = 'Создать';
-
+    // Обработчик для кнопки публикации
     const submitBtn = document.getElementById('submit-post');
     if (submitBtn) {
         submitBtn.addEventListener('click', savePost);
     }
 
-    // Обработчик для переключения отображения списка постов
-    document.querySelectorAll('.topic-name').forEach(topic => {
-        topic.addEventListener('click', function() {
-            const postList = this.nextElementSibling;
-            postList.style.display = postList.style.display === 'none' ? 'block' : 'none';
+    // Обработчик для кнопки отмены
+    const cancelBtn = document.getElementById('cancel-post');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            clearForm();
+            console.log('Редактирование отменено');
         });
+    }
+
+    // Добавляем обработчики для существующих тем
+    document.querySelectorAll('.topic-name').forEach(topic => {
+        addTopicClickHandler(topic);
     });
 
-    // Обработчик клика по постам
     document.querySelectorAll('.post-item').forEach(item => {
         item.addEventListener('click', () => {
-            // Меняем режим на "Отредактировать"
-            document.querySelector('.mode-label').textContent = 'Отредактировать';
-
-            // Визуально выделяем активный пост
             document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
             item.classList.add('active');
 
-            // Загружаем данные поста для редактирования
             const topic = item.closest('.topic').querySelector('.topic-name').textContent.trim();
             const title = item.textContent.trim();
             const post = blogPosts[topic]?.find(p => p.title === title);
@@ -71,24 +106,22 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Обработчик для добавления новой темы
-    document.querySelector('.add-topic').addEventListener('click', function() {
+    document.querySelector('.add-topic')?.addEventListener('click', function() {
         const topicName = prompt('Введите название новой темы:');
         if (topicName && topicName.trim()) {
-            const topicList = document.querySelector('.topic-list');
-            const newTopic = document.createElement('li');
-            newTopic.className = 'topic';
-            newTopic.innerHTML = `
-                <span class="topic-name">${topicName}</span>
-                <ul class="post-list"></ul>
-            `;
-            topicList.appendChild(newTopic);
+            const topic = document.createElement('div');
+            topic.className = 'topic-name';
+            topic.textContent = topicName;
 
-            // Добавляем обработчик для новой темы
-            newTopic.querySelector('.topic-name').addEventListener('click', function() {
-                const postList = this.nextElementSibling;
-                postList.style.display = postList.style.display === 'none' ? 'block' : 'none';
-            });
+            const postList = document.createElement('ul');
+            postList.className = 'post-list';
+
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.insertBefore(topic, document.querySelector('.add-topic'));
+            sidebar.insertBefore(postList, document.querySelector('.add-topic'));
+
+            // Используем общую функцию для добавления обработчика
+            addTopicClickHandler(topic);
         }
     });
 });
@@ -110,12 +143,6 @@ function savePost() {
 
     alert('Пост подготовлен — пока только в консоли :)');
 
-    // Сбрасываем форму и возвращаем режим "Создать"
-    document.getElementById('post-title').value = '';
-    document.getElementById('post-date').value = '';
-    quill.root.innerHTML = '';
-    document.querySelector('.mode-label').textContent = 'Создать';
-
-    // Снимаем выделение с активного поста
-    document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
+    // Используем общую функцию для очистки формы
+    clearForm();
 }
