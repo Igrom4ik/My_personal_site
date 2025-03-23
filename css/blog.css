@@ -38,22 +38,25 @@ body {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    height: 100vh;
+    padding-top: 40px;
+    gap: 5px;
+    align-items: flex-start;
+    height: auto; /* Высота по содержимому */
 }
 
 /* Левая панель */
 .sidebar {
     width: 250px;
-    height: 100%;
-    overflow-y: auto;
     background-color: #1c1f26;
-    border-right: 1px solid #2a2d36;
     padding: 20px;
-    color: #fff;
-    font-size: 14px;
-    position: sticky;
-    top: 0;
-    bottom: 0;
+    align-self: flex-start; /* Начинаем сверху */
+    height: 90vh; /* Можно задать конкретное значение, например 100vh или больше */
+    min-height: 400px; /* Минимальная начальная высота */
+    resize: vertical; /* Очень важно - разрешает пользователю изменять высоту */
+    /*overflow-y: auto; /* Добавляем прокрутку, если содержимое не помещается */
+    border-radius: 12px;
+    /* Нижняя граница с небольшой "ручкой" для изменения размера */
+    /*border-bottom: 10px solid #2a2d36;*/
 }
 
 .sidebar h2 {
@@ -109,18 +112,28 @@ body {
     background-color: #007acc;
 }
 
+/* Контейнер для редактора */
+.editor-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start; /* Прикрепляем к верху */
+    height: auto; /* Высота по содержимому */
+}
+
 /* Центральная панель */
 .editor-wrapper {
     background-color: #1c1f26;
     padding: 30px;
-    margin: 40px 0;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    width: 100%;
-    max-width: 700px;
-    height: auto;
-    flex: none;
-    display: block;
+    width: 700px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
 }
 
 .editor-wrapper h1 {
@@ -156,9 +169,23 @@ body {
 .ql-toolbar.ql-snow {
     background-color: #2a2d36;
     border: none;
-    color: #fff;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
 }
 
+/* Исправляем хаотичную сетку кнопок в Quill */
+.ql-toolbar .ql-formats {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 10px;
+}
+
+/* Сохраняем стили для кнопок и селектов */
 .ql-toolbar button,
 .ql-toolbar .ql-picker-label,
 .ql-toolbar .ql-picker-item {
@@ -166,7 +193,8 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    padding: 6px;
+    font-size: 16px;
 }
 
 .ql-toolbar button:hover,
@@ -188,18 +216,21 @@ body {
 .ql-toolbar button::before,
 .ql-toolbar .ql-picker-label::before,
 .ql-toolbar .ql-picker-item::before {
-    font-family: 'ql-icons' !important;
-    color: #fff !important;
+    font-family: inherit !important;
+    font-size: 16px;
+    color: #fff;
     font-style: normal;
     font-weight: normal;
     text-transform: none;
     line-height: 1;
-    font-size: 16px;
 }
 
 /* Контейнер и редактор */
 .ql-container.ql-snow {
     border: none;
+    background-color: #1e2129;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #3a3d45;
 }
 
 .ql-editor {
@@ -209,7 +240,6 @@ body {
 /* Область редактирования */
 #editor {
     min-height: 200px;
-    max-height: 400px; /* Ограничиваем максимальную высоту */
     overflow-y: auto;
     background-color: #1e2129;
     color: #fff;
@@ -221,7 +251,7 @@ body {
 /* Кнопка */
 .editor-wrapper button {
     display: block;
-    margin: 20px auto 0;
+    margin: 100px auto 0;
     background-color: #1890ff;
     color: #fff;
     border: none;
@@ -277,4 +307,52 @@ body {
 .ql-toolbar .ql-picker-item:hover {
     background-color: #1890ff;
     color: #fff;
+}
+
+/* Для Mozilla Firefox - специальный стиль для возможности растягивания */
+@-moz-document url-prefix() {
+    .sidebar {
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #3a3d45 #1c1f26;
+    }
+}
+
+/* Стиль для кастомной полосы прокрутки в Webkit браузерах */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #1c1f26;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #3a3d45;
+    border-radius: 4px;
+}
+
+/* Явный стиль для элемента растягивания (Chrome) */
+.sidebar::-webkit-resizer {
+    background-color: #2a2d36;
+    border-radius: 0 0 4px 0;
+}
+
+/* Добавляем медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    .editor-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: calc(100% - 40px); /* С учетом внутренних отступов */
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+        resize: none; /* Отключаем изменение размера на мобильных */
+    }
+
+    .editor-wrapper {
+        width: calc(100% - 60px); /* С учетом внутренних отступов */
+    }
 }
