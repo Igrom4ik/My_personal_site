@@ -1,0 +1,52 @@
+{
+  "about": {
+    "ru": {
+      "title": "Обо мне",
+      "subtitle": {
+        "text": "3D Environment Artist с опытом работы в игровой индустрии",
+        "classes": ["bold", "highlight"]
+      },
+      "text1": {
+        "text": "Я специализируюсь на создании реалистичных и стилизованных окружений для игр и визуализаций. Мой опыт включает работу с различными 3D-пакетами и игровыми движками, что позволяет мне создавать высококачественные ассеты и окружения для различных проектов.",
+        "classes": ["italic"]
+      },
+      "text2": {
+        "text": "Я стремлюсь постоянно совершенствовать свои навыки и следить за последними тенденциями в индустрии, чтобы создавать впечатляющие и технически оптимизированные работы.",
+        "classes": ["underline"]
+      },
+      "font": "Roboto, Arial, sans-serif"
+    },
+    "en": {
+      "title": "About Me",
+      "subtitle": {
+        "text": "3D Environment Artist with experience in the gaming industry",
+        "classes": ["bold", "highlight"]
+      },
+      "text1": {
+        "text": "I specialize in creating realistic and stylized environments for games and visualizations. My experience includes working with various 3D packages and game engines, allowing me to create high-quality assets and environments for various projects.",
+        "classes": ["italic"]
+      },
+      "text2": {
+        "text": "I strive to constantly improve my skills and keep up with the latest industry trends to create impressive and technically optimized works.",
+        "classes": ["underline"]
+      },
+      "font": "Roboto, Arial, sans-serif"
+    },
+    "zh": {
+      "title": "关于我",
+      "subtitle": {
+        "text": "3D环境艺术家，拥有游戏行业经验",
+        "classes": ["bold", "highlight"]
+      },
+      "text1": {
+        "text": "我专注于为游戏和可视化创建逼真和风格化的环境。我的经验包括使用各种3D软件包和游戏引擎，使我能够为各种项目创建高质量的资产和环境。",
+        "classes": ["italic"]
+      },
+      "text2": {
+        "text": "我努力不断提高自己的技能并跟上行业最新趋势，以创建令人印象深刻且技术上优化的作品。",
+        "classes": ["underline"]
+      },
+      "font": "Noto Sans SC, sans-serif"
+    }
+  }
+}

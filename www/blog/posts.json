@@ -1,16 +1,23 @@
 [
   {
     "id": 1,
-    "title": "Как создать реалистичное освещение",
-    "date": "2025-03-22",
-    "filename": "post-1.html",
-    "image": "images/blog/post-1.jpg"
+    "title": "Lumen Lighting",
+    "date": "2025-03-10",
+    "content": "<p>Настройки освещения через Lumen...</p>",
+    "thumbnail": "images/blog/lumen.jpg"
   },
   {
     "id": 2,
+    "title": "Nanite и производительность",
+    "date": "2025-03-15",
+    "content": "<p>Как повысить FPS с Nanite...</p>",
+    "thumbnail": "images/blog/nanite.jpg"
+  },
+  {
+    "id": 3,
     "title": "Оптимизация моделей",
-    "date": "2025-03-20",
-    "filename": "post-2.html",
-    "image": "images/blog/post-2.jpg"
+    "date": "2025-02-20",
+    "content": "<p>Удаляйте лишние полигоны...</p>",
+    "thumbnail": "images/blog/modeling.jpg"
   }
 ]

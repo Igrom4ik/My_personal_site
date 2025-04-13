@@ -22,19 +22,15 @@ const blogPosts = {
     ]
 };
 
-// Функция для очистки формы и снятия выделения с постов
 function clearForm() {
     document.getElementById('post-title').value = '';
     document.getElementById('post-date').value = '';
     if (quill) {
         quill.root.innerHTML = '';
     }
-
-    // Снимаем выделение с активного поста
     document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
 }
 
-// Функция для добавления обработчика клика на темы
 function addTopicClickHandler(topicElement) {
     topicElement.addEventListener('click', function() {
         const postList = this.nextElementSibling;
@@ -42,25 +38,20 @@ function addTopicClickHandler(topicElement) {
     });
 }
 
-// Функция для исправления прокрутки
 function fixScrollbars() {
-    // Получаем ссылки на DOM элементы
     const quillContainer = document.querySelector('.ql-container');
     const quillEditor = document.querySelector('.ql-editor');
     const editorDiv = document.querySelector('#editor');
 
     if (quillContainer) {
-        // Убираем прокрутку с контейнера
         quillContainer.style.overflow = 'hidden';
     }
 
     if (editorDiv) {
-        // Убираем прокрутку с div#editor
         editorDiv.style.overflow = 'hidden';
     }
 
     if (quillEditor) {
-        // Оставляем прокрутку только на редакторе
         quillEditor.style.maxHeight = '400px';
         quillEditor.style.overflowY = 'auto';
     }
@@ -93,16 +84,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Применяем исправление прокрутки после инициализации
     fixScrollbars();
-
-    // Также применяем при изменении контента
     quill.on('text-change', fixScrollbars);
-
-    // И при изменении размера окна
     window.addEventListener('resize', fixScrollbars);
 
-    // Добавляем обработку drag-and-drop
     const editorEl = document.querySelector('#editor');
 
     editorEl.addEventListener('dragover', e => {
@@ -139,13 +124,11 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Обработчик для кнопки публикации
     const submitBtn = document.getElementById('submit-post');
     if (submitBtn) {
         submitBtn.addEventListener('click', savePost);
     }
 
-    // Обработчик для кнопки отмены
     const cancelBtn = document.getElementById('cancel-post');
     if (cancelBtn) {
         cancelBtn.addEventListener('click', function() {
@@ -154,7 +137,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Добавляем обработчики для существующих тем
     document.querySelectorAll('.topic-name').forEach(topic => {
         addTopicClickHandler(topic);
     });
@@ -164,7 +146,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.post-item').forEach(p => p.classList.remove('active'));
             item.classList.add('active');
 
-            const topic = item.closest('.topic').querySelector('.topic-name').textContent.trim();
+            const topic = item.closest('.topic')?.querySelector('.topic-name')?.textContent.trim();
             const title = item.textContent.trim();
             const post = blogPosts[topic]?.find(p => p.title === title);
 
@@ -190,7 +172,6 @@ window.addEventListener('DOMContentLoaded', () => {
             sidebar.insertBefore(topic, document.querySelector('.add-topic'));
             sidebar.insertBefore(postList, document.querySelector('.add-topic'));
 
-            // Используем общую функцию для добавления обработчика
             addTopicClickHandler(topic);
         }
     });
@@ -200,19 +181,25 @@ function savePost() {
     const title = document.getElementById('post-title').value.trim();
     const date = document.getElementById('post-date').value;
     const content = quill.root.innerHTML;
+    const thumbnail = prompt('Введите URL миниатюры (или оставьте пустым):') || 'images/placeholder.jpg';
 
     if (!title || !date || !content) {
         alert('Пожалуйста, заполните все поля.');
         return;
     }
 
-    console.log('=== Новый пост ===');
-    console.log('Заголовок:', title);
-    console.log('Дата:', date);
-    console.log('Контент:', content);
+    const newPost = {
+        id: Date.now(), // Уникальный ID на основе времени
+        title,
+        date,
+        content,
+        thumbnail
+    };
 
-    alert('Пост подготовлен — пока только в консоли :)');
+    console.log('=== Новый пост для posts.json ===');
+    console.log(JSON.stringify(newPost, null, 2));
 
-    // Используем общую функцию для очистки формы
+    alert('Пост сохранен в консоли!');
+
     clearForm();
 }

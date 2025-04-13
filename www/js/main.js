@@ -1,119 +1,159 @@
-/**
- * Главный файл JavaScript для сайта Игоря Унгурянова
- * Содержит всю логику работы сайта: переключение темы, переключение языка,
- * мобильное меню и фильтрацию портфолио
- */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // ==================
+    let textsData = {}; // Переменная для хранения данных из texts.json
+
+    // Загружаем texts.json
+    fetch('js/texts.json')
+        .then(response => response.json())
+        .then(data => {
+            textsData = data;
+            // После загрузки данных устанавливаем язык
+            const savedLanguage = localStorage.getItem('language') || 'ru';
+            setLanguage(savedLanguage);
+            updatePageTexts(savedLanguage);
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки текстов:', error);
+            // Если texts.json не загрузился, все равно устанавливаем язык
+            const savedLanguage = localStorage.getItem('language') || 'ru';
+            setLanguage(savedLanguage);
+            updatePageTexts(savedLanguage);
+        });
+
     // Мобильное меню
-    // ==================
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    // Открытие/закрытие мобильного меню
-    menuToggle.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-        // Изменение иконки меню
-        const icon = menuToggle.querySelector('i');
-        if (mobileMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    // Закрытие меню при клике на пункт меню
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
-    });
 
-    // Закрытие меню при клике вне меню
-    document.addEventListener('click', function(event) {
-        const isClickInsideMenu = mobileMenu.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
 
-        if (!isClickInsideMenu && !isClickOnToggle && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
 
-    // ==================
-    // Переключение темы
-    // ==================
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-
-    // Проверяем сохраненную тему
-    const savedTheme = localStorage.getItem('theme') || 'dark'; // По умолчанию темная тема
-    if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+            if (!isClickInsideMenu && !isClickOnToggle && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
     }
 
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    // Переключение темы
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
 
-        // Устанавливаем новую тему
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        // Меняем иконку
-        if (newTheme === 'light') {
+    if (themeToggle && themeIcon) {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
         }
-    });
 
-    // ==================
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            if (newTheme === 'light') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+    }
+
     // Переключение языков
-    // ==================
     const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+        const savedLanguage = localStorage.getItem('language') || 'ru';
+        languageSelect.value = savedLanguage;
 
-    // Проверяем сохраненный язык
-    const savedLanguage = localStorage.getItem('language') || 'ru';
-    setLanguage(savedLanguage);
-    languageSelect.value = savedLanguage;
-
-    languageSelect.addEventListener('change', function() {
-        const selectedLanguage = this.value;
-        setLanguage(selectedLanguage);
-        localStorage.setItem('language', selectedLanguage);
-
-        // Обновляем тексты на странице в соответствии с выбранным языком
-        updatePageTexts(selectedLanguage);
-    });
+        languageSelect.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            setLanguage(selectedLanguage);
+            localStorage.setItem('language', selectedLanguage);
+            updatePageTexts(selectedLanguage);
+        });
+    }
 
     function setLanguage(language) {
-        // Скрываем все языковые варианты меню
-        document.querySelectorAll('[class^="lang-"]').forEach(el => {
+        const menuElements = document.querySelectorAll('[class^="lang-"]');
+        menuElements.forEach(el => {
             el.style.display = 'none';
         });
-
-        // Показываем меню на выбранном языке
-        document.querySelectorAll('.lang-' + language).forEach(el => {
+        const activeMenu = document.querySelectorAll('.lang-' + language);
+        activeMenu.forEach(el => {
             el.style.display = '';
         });
     }
 
     function updatePageTexts(language) {
-        // Объект с текстами на разных языках
+        // Обновляем содержимое раздела "Обо мне" из texts.json
+        const aboutTitle = document.getElementById('about-title');
+        const aboutSubtitle = document.getElementById('about-subtitle');
+        const aboutText1 = document.getElementById('about-text1');
+        const aboutText2 = document.getElementById('about-text2');
+
+        if (textsData.about && textsData.about[language] && aboutTitle && aboutSubtitle && aboutText1 && aboutText2) {
+            aboutTitle.textContent = textsData.about[language].title;
+
+            // Для subtitle
+            const subtitleData = textsData.about[language].subtitle;
+            aboutSubtitle.textContent = subtitleData.text;
+            if (subtitleData.classes) {
+                aboutSubtitle.classList.add(...subtitleData.classes);
+            }
+
+            // Для text1
+            const text1Data = textsData.about[language].text1;
+            aboutText1.textContent = text1Data.text;
+            if (text1Data.classes) {
+                aboutText1.classList.add(...text1Data.classes);
+            }
+
+            // Для text2
+            const text2Data = textsData.about[language].text2;
+            aboutText2.textContent = text2Data.text;
+            if (text2Data.classes) {
+                aboutText2.classList.add(...text2Data.classes);
+            }
+
+            // Применяем шрифт из texts.json
+            const aboutText = document.querySelector('.about-text');
+            const font = textsData.about[language].font || 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
+            aboutText.style.fontFamily = font;
+            aboutSubtitle.style.fontFamily = font;
+            aboutText1.style.fontFamily = font;
+            aboutText2.style.fontFamily = font;
+        }
+
+        // Обновляем остальные тексты
         const texts = {
             'hero': {
                 'ru': {
@@ -130,26 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     'title': '伊戈尔·温古里亚诺夫',
                     'subtitle': '3D环境艺术家',
                     'button': '查看作品'
-                }
-            },
-            'about': {
-                'ru': {
-                    'title': 'Обо мне',
-                    'subtitle': '3D Environment Artist с опытом работы в игровой индустрии',
-                    'text1': 'Я специализируюсь на создании реалистичных и стилизованных окружений для игр и визуализаций. Мой опыт включает работу с различными 3D-пакетами и игровыми движками, что позволяет мне создавать высококачественные ассеты и окружения для различных проектов.',
-                    'text2': 'Я стремлюсь постоянно совершенствовать свои навыки и следить за последними тенденциями в индустрии, чтобы создавать впечатляющие и технически оптимизированные работы.'
-                },
-                'en': {
-                    'title': 'About Me',
-                    'subtitle': '3D Environment Artist with experience in the gaming industry',
-                    'text1': 'I specialize in creating realistic and stylized environments for games and visualizations. My experience includes working with various 3D packages and game engines, allowing me to create high-quality assets and environments for various projects.',
-                    'text2': 'I strive to constantly improve my skills and keep up with the latest industry trends to create impressive and technically optimized works.'
-                },
-                'zh': {
-                    'title': '关于我',
-                    'subtitle': '拥有游戏行业经验的3D环境艺术家',
-                    'text1': '我专注于为游戏和可视化创建逼真和风格化的环境。我的经验包括使用各种3D软件包和游戏引擎，使我能够为各种项目创建高质量的资产和环境。',
-                    'text2': '我努力不断提高自己的技能并跟上行业最新趋势，以创建令人印象深刻且技术上优化的作品。'
                 }
             },
             'portfolio': {
@@ -228,76 +248,78 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        // Обновляем тексты для героя
-        document.querySelector('.hero h1').textContent = texts.hero[language].title;
-        document.querySelector('.hero p').textContent = texts.hero[language].subtitle;
-        document.querySelector('.hero .btn').textContent = texts.hero[language].button;
+        const heroTitle = document.querySelector('.hero h1');
+        const heroSubtitle = document.querySelector('.hero p');
+        const heroButton = document.querySelector('.hero .btn');
+        if (heroTitle && heroSubtitle && heroButton) {
+            heroTitle.textContent = texts.hero[language].title;
+            heroSubtitle.textContent = texts.hero[language].subtitle;
+            heroButton.textContent = texts.hero[language].button;
+        }
 
-        // Обновляем заголовки секций
-        document.querySelector('#about .section-title h2').textContent = texts.about[language].title;
-        document.querySelector('#portfolio .section-title h2').textContent = texts.portfolio[language].title;
-        document.querySelector('#blog .section-title h2').textContent = texts.blog[language].title;
-        document.querySelector('#contact .section-title h2').textContent = texts.contact[language].title;
+        const portfolioTitle = document.querySelector('#portfolio .section-title h2');
+        const blogTitle = document.querySelector('#blog .section-title h2');
+        const contactTitle = document.querySelector('#contact .section-title h2');
+        if (portfolioTitle) portfolioTitle.textContent = texts.portfolio[language].title;
+        if (blogTitle) blogTitle.textContent = texts.blog[language].title;
+        if (contactTitle) contactTitle.textContent = texts.contact[language].title;
 
-        // Обновляем секцию Обо мне
-        document.querySelector('.about-text h3').textContent = texts.about[language].subtitle;
-        const aboutParagraphs = document.querySelectorAll('.about-text p');
-        aboutParagraphs[0].textContent = texts.about[language].text1;
-        aboutParagraphs[1].textContent = texts.about[language].text2;
-
-        // Обновляем секцию блога
         const readMoreLinks = document.querySelectorAll('.read-more');
         readMoreLinks.forEach(link => {
             link.textContent = texts.blog[language].readmore;
         });
 
-        // Обновляем секцию контактов
-        document.querySelector('.contact-info h3').textContent = texts.contact[language].subtitle;
-        document.querySelector('.contact-info p').textContent = texts.contact[language].text;
-        document.querySelectorAll('.contact-item h4')[0].textContent = texts.contact[language].email;
-        document.querySelectorAll('.contact-item h4')[1].textContent = texts.contact[language].phone;
-        document.querySelectorAll('.contact-item h4')[2].textContent = texts.contact[language].location;
+        const contactInfoSubtitle = document.querySelector('.contact-info h3');
+        const contactInfoText = document.querySelector('.contact-info p');
+        const contactItems = document.querySelectorAll('.contact-item h4');
+        if (contactInfoSubtitle && contactInfoText && contactItems.length >= 3) {
+            contactInfoSubtitle.textContent = texts.contact[language].subtitle;
+            contactInfoText.textContent = texts.contact[language].text;
+            contactItems[0].textContent = texts.contact[language].email;
+            contactItems[1].textContent = texts.contact[language].phone;
+            contactItems[2].textContent = texts.contact[language].location;
+        }
 
-        // Обновляем футер
-        document.querySelector('footer p').textContent = texts.footer[language].copyright;
+        const footerCopyright = document.querySelector('footer p');
+        if (footerCopyright) {
+            footerCopyright.textContent = texts.footer[language].copyright;
+        }
 
-        // Обновляем форму в зависимости от языка
         const form = document.getElementById('contactForm');
         if (form) {
             const formInputs = form.querySelectorAll('input, textarea');
-            if (language === 'ru') {
-                formInputs[0].placeholder = 'Ваше имя';
-                formInputs[1].placeholder = 'Ваш Email';
-                formInputs[2].placeholder = 'Тема';
-                formInputs[3].placeholder = 'Ваше сообщение';
-                form.querySelector('button').textContent = 'Отправить сообщение';
-            } else if (language === 'en') {
-                formInputs[0].placeholder = 'Your Name';
-                formInputs[1].placeholder = 'Your Email';
-                formInputs[2].placeholder = 'Subject';
-                formInputs[3].placeholder = 'Your Message';
-                form.querySelector('button').textContent = 'Send Message';
-            } else if (language === 'zh') {
-                formInputs[0].placeholder = '您的姓名';
-                formInputs[1].placeholder = '您的电子邮件';
-                formInputs[2].placeholder = '主题';
-                formInputs[3].placeholder = '您的留言';
-                form.querySelector('button').textContent = '发送消息';
+            const formButton = form.querySelector('button');
+            if (formInputs.length >= 4 && formButton) {
+                if (language === 'ru') {
+                    formInputs[0].placeholder = 'Ваше имя';
+                    formInputs[1].placeholder = 'Ваш Email';
+                    formInputs[2].placeholder = 'Тема';
+                    formInputs[3].placeholder = 'Ваше сообщение';
+                    formButton.textContent = 'Отправить сообщение';
+                } else if (language === 'en') {
+                    formInputs[0].placeholder = 'Your Name';
+                    formInputs[1].placeholder = 'Your Email';
+                    formInputs[2].placeholder = 'Subject';
+                    formInputs[3].placeholder = 'Your Message';
+                    formButton.textContent = 'Send Message';
+                } else if (language === 'zh') {
+                    formInputs[0].placeholder = '您的姓名';
+                    formInputs[1].placeholder = '您的电子邮件';
+                    formInputs[2].placeholder = '主题';
+                    formInputs[3].placeholder = '您的留言';
+                    formButton.textContent = '发送消息';
+                }
             }
         }
     }
 
-    // ==================
     // Портфолио фильтр
-    // ==================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Удаление активного класса со всех кнопок
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Добавление активного класса нажатой кнопке
             this.classList.add('active');
 
             const filterValue = this.getAttribute('data-filter');
@@ -312,9 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ==================
     // Плавная прокрутка к секциям
-    // ==================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -334,9 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ==================
     // Анимация при скролле
-    // ==================
     function animateOnScroll() {
         const animatedElements = document.querySelectorAll('.portfolio-item, .blog-card, .skill-item');
         const windowHeight = window.innerHeight;
@@ -350,33 +368,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Первоначальная проверка при загрузке страницы
     animateOnScroll();
-
-    // Проверка при скролле
     window.addEventListener('scroll', animateOnScroll);
 
-    // Инициализация - загружаем тексты для текущего языка
-    updatePageTexts(savedLanguage);
-
-    // ==================
     // Обработка формы контактов
-    // ==================
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Здесь может быть код для отправки формы на сервер
-            // Например, с использованием fetch API или XMLHttpRequest
-
-            // Временная имитация отправки
             const submitButton = contactForm.querySelector('button');
             const originalText = submitButton.textContent;
 
             submitButton.disabled = true;
 
-            // Текст в зависимости от языка
             const lang = localStorage.getItem('language') || 'ru';
             if (lang === 'ru') {
                 submitButton.textContent = 'Отправка...';
@@ -391,10 +396,83 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
 
-                // Показываем сообщение об успешной отправке
                 alert(lang === 'ru' ? 'Сообщение отправлено!' :
                     (lang === 'en' ? 'Message sent!' : '消息已发送！'));
             }, 1500);
         });
+    }
+
+    // Карусель блога
+    const blogPostsContainer = document.getElementById('blog-posts');
+    if (blogPostsContainer) {
+        fetch('blog/posts.json')
+            .then(response => response.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'blog-card';
+                    postElement.innerHTML = `
+                        <div class="blog-img">
+                            <img src="${post.thumbnail || 'images/placeholder.jpg'}" alt="${post.title}">
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-date">${post.date}</p>
+                            <p>${post.content.substring(0, 100)}...</p>
+                            <a href="blog/post-${post.id}.html" class="read-more">Читать далее</a>
+                        </div>
+                    `;
+                    blogPostsContainer.appendChild(postElement);
+                });
+            })
+            .catch(error => console.error('Ошибка загрузки постов:', error));
+
+        const prevButton = document.querySelector('.carousel-nav.prev');
+        const nextButton = document.querySelector('.carousel-nav.next');
+
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => {
+                blogPostsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            nextButton.addEventListener('click', () => {
+                blogPostsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            let isHovering = false;
+            let scrollDirection = 0;
+
+            blogPostsContainer.parentElement.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+
+            blogPostsContainer.parentElement.addEventListener('mouseleave', () => {
+                isHovering = false;
+                scrollDirection = 0;
+            });
+
+            blogPostsContainer.parentElement.addEventListener('mousemove', (e) => {
+                const rect = blogPostsContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const width = rect.width;
+
+                if (x < width * 0.2) {
+                    scrollDirection = -1; // Scroll left
+                } else if (x > width * 0.8) {
+                    scrollDirection = 1; // Scroll right
+                } else {
+                    scrollDirection = 0; // Stop scrolling
+                }
+            });
+
+            function autoScroll() {
+                if (isHovering && scrollDirection !== 0) {
+                    blogPostsContainer.scrollBy({ left: scrollDirection * 5, behavior: 'smooth' });
+                }
+                requestAnimationFrame(autoScroll);
+            }
+
+            requestAnimationFrame(autoScroll);
+        }
     }
 });

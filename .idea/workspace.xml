@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ba20ff57-099d-42ed-9f1c-2732aad36f99" name="Changes" comment="Обновление проекта">
+      <change afterPath="$PROJECT_DIR$/www/blog-view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/about.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/animations.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/blog-post.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/contact.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/hero.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/js/texts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/admin/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/admin/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/admin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/admin/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/blog/post-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/post-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/blog/post-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/post-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/blog/posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/posts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/blog.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/blog.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/portfolio.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/blog-editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/blog-editor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/main.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Igrom4ek&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Igrom4ek/My-cite.git&quot;,
+    &quot;accountId&quot;: &quot;47e3d1c6-1f51-4dfb-9f8c-b62eaf4ac622&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2ugYf3LSlbEDqiD16f9h2sgjNOa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Dropbox/my_cite/blog&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Dropbox\my_cite\blog" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Dropbox\my_cite\www\admin" />
+      <recent name="F:\Dropbox\my_cite\www" />
+      <recent name="F:\Dropbox\my_cite\css" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba20ff57-099d-42ed-9f1c-2732aad36f99" name="Changes" comment="" />
+      <created>1742671783736</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742671783736</updated>
+      <workItem from="1742671784718" duration="21995000" />
+      <workItem from="1744553250132" duration="7993000" />
+    </task>
+    <task id="LOCAL-00001" summary="My Cite">
+      <option name="closed" value="true" />
+      <created>1742684039145</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742684039145</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Обновление стиля блога">
+      <option name="closed" value="true" />
+      <created>1742686556104</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742686556104</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Обновление стиля блога">
+      <option name="closed" value="true" />
+      <created>1742689649989</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742689649989</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Обновление стиля блога">
+      <option name="closed" value="true" />
+      <created>1742693227754</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742693227754</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Блог - улучшенный стиль">
+      <option name="closed" value="true" />
+      <created>1742695166949</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742695166949</updated>
+    </task>
+    <task id="LOCAL-00006" summary="drag and drop в блоге">
+      <option name="closed" value="true" />
+      <created>1742695745019</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742695745019</updated>
+    </task>
+    <task id="LOCAL-00007" summary="порядок в структуре">
+      <option name="closed" value="true" />
+      <created>1742697436704</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742697436704</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Обновление проекта">
+      <option name="closed" value="true" />
+      <created>1744553607703</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744553607703</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="My Cite" />
+    <MESSAGE value="Обновление стиля блога" />
+    <MESSAGE value="Блог - улучшенный стиль" />
+    <MESSAGE value="drag and drop в блоге" />
+    <MESSAGE value="порядок в структуре" />
+    <MESSAGE value="Обновление проекта" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновление проекта" />
+  </component>
+</project>

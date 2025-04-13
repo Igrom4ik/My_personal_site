@@ -1,503 +1,121 @@
-/* ===================== */
-/* Blog Editor ArtStation Style */
-/* ===================== */
-
-/* Подключение шрифта ql-icons локально (предполагается, что файл шрифта находится в папке fonts/) */
-@font-face {
-    font-family: 'ql-icons'; /* Название шрифта для использования */
-    src: url('/fonts/ql-icons.woff') format('woff'), /* Путь к файлу шрифта в формате WOFF */
-    url('/fonts/ql-icons.ttf') format('truetype'); /* Путь к файлу шрифта в формате TTF */
-    font-weight: normal; /* Обычная толщина шрифта */
-    font-style: normal; /* Обычный стиль шрифта (не курсив) */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
 }
 
-/* Основные стили для страницы */
-html, body {
-    height: 100%; /* Страница занимает всю высоту экрана */
-    margin: 0; /* Убираем стандартные внешние отступы */
-    background-color: #121418; /* Темный фон страницы */
-    color: #ffffff; /* Белый цвет текста */
-    font-family: 'Segoe UI', Tahoma, sans-serif; /* Шрифт текста на странице */
+.blog-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
 }
 
-.editor-dark {
-    min-height: 100vh; /* Минимальная высота — вся видимая область экрана */
-    background-color: #121418; /* Темный фон контейнера */
-    color: #ffffff; /* Белый цвет текста */
-    font-family: 'Segoe UI', Tahoma, sans-serif; /* Шрифт для текста */
-    margin: 0; /* Убираем внешние отступы */
-    padding: 0; /* Убираем внутренние отступы */
-    display: flex; /* Элементы внутри выстраиваются гибко (рядом или друг под другом) */
-    justify-content: center; /* Элементы выравниваются по центру горизонтально */
-    align-items: flex-start; /* Элементы прижимаются к верху контейнера */
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    background-color: var(--card-hover);
 }
 
-.editor-layout {
-    display: flex; /* Гибкое расположение боковой панели и редактора */
-    width: 100%; /* Ширина на весь контейнер */
-    max-width: 1200px; /* Максимальная ширина — не больше 1200 пикселей */
-    padding-top: 40px; /* Отступ сверху — 40 пикселей */
-    gap: 20px; /* Расстояние между боковой панелью и редактором — 20 пикселей */
-    align-items: flex-start; /* Элементы прижимаются к верху */
+.blog-img {
+    height: 200px;
 }
 
-/* Левая панель */
-.sidebar {
-    width: 250px; /* Фиксированная ширина боковой панели — 250 пикселей */
-    background-color: #1c1f26; /* Темно-серый фон панели */
-    padding: 20px; /* Внутренние отступы со всех сторон — 20 пикселей */
-    border-radius: 12px; /* Скругленные углы — 12 пикселей */
-    align-self: flex-start; /* Панель прижимается к верху контейнера */
-    min-height: 1050px; /* Минимальная высота — 400 пикселей */
-    height: auto; /* Высота подстраивается под содержимое */
-    resize: none; /* Нельзя менять размер вручную */
-    overflow-y: auto; /* Прокрутка по вертикали, если контента слишком много */
-    position: relative; /* Позволяет точно позиционировать вложенные элементы */
+.blog-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-/* Скрываем стандартный ресайзер в WebKit браузерах */
-.sidebar::-webkit-resizer {
-    display: none; /* Убираем "уголок" для изменения размера в Chrome/Safari */
+.blog-content {
+    padding: 20px;
 }
 
-.sidebar h2 {
-    margin-top: 0; /* Убираем отступ сверху у заголовка */
-    font-size: 16px; /* Размер шрифта заголовка — 16 пикселей */
-    margin-bottom: 10px; /* Отступ снизу — 10 пикселей */
+.blog-date {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
-.topic-list {
-    list-style: none; /* Убираем точки у списка */
-    padding: 0; /* Убираем внутренние отступы */
-    margin: 0; /* Убираем внешние отступы */
+.blog-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--text-color);
 }
 
-.topic-name {
-    font-weight: bold; /* Жирный шрифт для названий тем */
-    margin-top: 10px; /* Отступ сверху — 10 пикселей */
-    display: block; /* Элемент занимает всю строку */
-    cursor: pointer; /* Курсор как "рука" при наведении */
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    position: relative;
 }
 
-.post-list {
-    list-style: none; /* Убираем точки у списка постов */
-    padding-left: 15px; /* Отступ слева — 15 пикселей для вложенности */
-    margin: 0; /* Убираем внешние отступы */
+.read-more::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
 }
 
-.post-item {
-    cursor: pointer; /* Курсор как "рука" при наведении */
-    padding: 4px 0; /* Отступы сверху и снизу — 4 пикселя */
-    color: #aaa; /* Серый цвет текста постов */
+.read-more:hover::after {
+    width: 100%;
 }
 
-.post-item:hover {
-    color: #fff; /* Белый цвет текста при наведении */
+.blog-carousel {
+    position: relative;
 }
 
-.post-item.active {
-    color: #fff; /* Белый цвет для активного поста */
-    font-weight: bold; /* Жирный шрифт для активного поста */
+.blog-posts {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px 0;
+    scroll-behavior: smooth;
 }
 
-.add-topic {
-    margin-top: 20px; /* Отступ сверху — 20 пикселей */
-    padding: 8px 12px; /* Внутренние отступы: 8 пикселей сверху/снизу, 12 слева/справа */
-    width: 100%; /* Кнопка на всю ширину панели */
-    background-color: #1890ff; /* Голубой фон кнопки */
-    color: #fff; /* Белый цвет текста */
-    border: none; /* Убираем рамку */
-    border-radius: 6px; /* Скругленные углы — 6 пикселей */
-    cursor: pointer; /* Курсор как "рука" */
+.blog-posts::-webkit-scrollbar {
+    display: none;
 }
 
-.add-topic:hover {
-    background-color: #007acc; /* Темно-голубой фон при наведении */
+.blog-posts .blog-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
 }
 
-/* Контейнер для редактора */
-.editor-container {
-    flex: 1; /* Занимает всё доступное пространство рядом с боковой панелью */
-    display: flex; /* Гибкое расположение содержимого */
-    flex-direction: column; /* Элементы внутри идут сверху вниз */
-    justify-content: flex-start; /* Элементы прижимаются к верху */
-    align-self: flex-start; /* Контейнер прижимается к верху */
-    height: auto; /* Высота подстраивается под содержимое */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
 }
 
-/* Центральная панель */
-.editor-wrapper {
-    background-color: #1c1f26; /* Темно-серый фон редактора */
-    padding: 30px; /* Внутренние отступы — 30 пикселей */
-    border-radius: 12px; /* Скругленные углы — 12 пикселей */
-    min-height: 700px; /* Минимальная высота — 400 пикселей */
-    box-shadow: 0 0 20px rgba(0,0,0,0.6); /* Тень вокруг редактора */
-    width: 700px; /* Фиксированная ширина — 700 пикселей */
-    display: flex; /* Гибкое расположение содержимого */
-    flex-direction: column; /* Элементы внутри идут сверху вниз */
-    gap: 20px; /* Расстояние между элементами — 20 пикселей */
-    margin-bottom: 40px; /* Отступ снизу — 40 пикселей */
-    position: relative; /* Позволяет точно позиционировать вложенные элементы */
+.carousel-nav:hover {
+    opacity: 1;
 }
 
-.editor-wrapper h1 {
-    text-align: center; /* Заголовок по центру */
-    margin-bottom: 20px; /* Отступ снизу — 20 пикселей */
-    font-size: 24px; /* Размер шрифта — 24 пикселя */
+.carousel-nav.prev {
+    left: -20px;
 }
 
-.editor-wrapper input[type="text"],
-.editor-wrapper input[type="date"] {
-    width: 100%; /* Поля ввода на всю ширину */
-    padding: 12px; /* Внутренние отступы — 12 пикселей */
-    margin-bottom: 15px; /* Отступ снизу — 15 пикселей */
-    background-color: #2a2d36; /* Темный фон полей */
-    border: none; /* Убираем рамку */
-    border-radius: 8px; /* Скругленные углы — 8 пикселей */
-    color: #fff; /* Белый цвет текста */
-    font-size: 16px; /* Размер шрифта — 16 пикселей */
-    box-sizing: border-box; /* Размеры включают рамку и отступы */
-}
-
-/* Панель инструментов редактора */
-#editor-toolbar {
-    display: flex; /* Гибкое расположение кнопок */
-    flex-wrap: nowrap; /* Кнопки не переносятся на новую строку */
-    overflow-x: auto; /* Горизонтальная прокрутка, если кнопок много */
-    white-space: nowrap; /* Текст не переносится */
-    scrollbar-width: thin; /* Тонкая полоса прокрутки (Firefox) */
-    padding: 4px 6px; /* Отступы: 4 пикселя сверху/снизу, 6 слева/справа */
-    justify-content: flex-start; /* Кнопки прижимаются к началу */
-    background-color: #2a2d36; /* Темный фон панели */
-    border-radius: 8px 8px 0 0; /* Скругленные углы только сверху */
-    width: 100%; /* Ширина на весь контейнер */
-    box-sizing: border-box; /* Размеры включают рамку и отступы */
-    max-width: 100%; /* Не шире контейнера */
-}
-
-/* Стиль для полосы прокрутки панели (если она не помещается) */
-#editor-toolbar::-webkit-scrollbar {
-    height: 4px; /* Высота полосы прокрутки — 4 пикселя */
-}
-
-#editor-toolbar::-webkit-scrollbar-track {
-    background: #2a2d36; /* Цвет фона полосы */
-}
-
-#editor-toolbar::-webkit-scrollbar-thumb {
-    background-color: #3a3d45; /* Цвет ползунка */
-    border-radius: 4px; /* Скругленные углы ползунка */
-}
-
-/* Стили для панели инструментов */
-.ql-toolbar.ql-snow {
-    background-color: #2a2d36; /* Темный фон панели */
-    border: none; /* Убираем рамку */
-    border-radius: 8px 8px 0 0; /* Скругленные углы только сверху */
-    padding: 8px 12px; /* Отступы: 8 пикселей сверху/снизу, 12 слева/справа */
-    display: flex; /* Гибкое расположение кнопок */
-    align-items: center; /* Кнопки выравниваются по центру вертикально */
-    flex-wrap: wrap; /* Кнопки могут переноситься, если не помещаются */
-    gap: 3px; /* Расстояние между группами кнопок — 3 пикселя */
-    width: 100%; /* Ширина на весь контейнер */
-    min-height: 40px; /* Минимальная высота — 40 пикселей */
-}
-
-/* Удаляем стандартные стили Quill, которые могут конфликтовать */
-.ql-toolbar.ql-snow * {
-    box-sizing: border-box; /* Размеры включают рамку и отступы для всех элементов */
-}
-
-/* Группы кнопок */
-.ql-formats {
-    display: inline-flex; /* Кнопки в группе идут в ряд */
-    align-items: center; /* Выравнивание по центру вертикально */
-    gap: 5px; /* Расстояние между кнопками в группе — 5 пикселей */
-    margin-right: 8px; /* Отступ справа — 8 пикселей */
-}
-
-/* Стили для кнопок */
-.ql-toolbar button {
-    width: 24px; /* Ширина кнопки — 24 пикселя */
-    height: 24px; /* Высота кнопки — 24 пикселя */
-    margin-right: 4px; /* Отступ справа — 4 пикселя */
-    font-size: 12px; /* Размер шрифта внутри кнопки */
-    display: flex; /* Гибкое расположение иконки */
-    align-items: center; /* Иконка по центру вертикально */
-    justify-content: center; /* Иконка по центру горизонтально */
-    background: transparent; /* Прозрачный фон */
-    border: 1px solid #3a3d45; /* Тонкая серая рамка */
-    border-radius: 4px; /* Скругленные углы — 4 пикселя */
-    cursor: pointer; /* Курсор как "рука" */
-}
-
-/* Выпадающие списки */
-.ql-toolbar .ql-picker {
-    height: 24px; /* Высота списка — 24 пикселя */
-    font-size: 13px; /* Размер шрифта — 13 пикселей */
-    margin-right: 4px; /* Отступ справа — 4 пикселя */
-}
-
-/* Надписи в выпадающих списках */
-.ql-toolbar .ql-picker-label {
-    display: flex; /* Гибкое расположение текста */
-    align-items: center; /* Текст по центру вертикально */
-    padding: 0 6px; /* Отступы слева и справа — 6 пикселей */
-    border: 1px solid #3a3d45; /* Тонкая серая рамка */
-    border-radius: 4px; /* Скругленные углы — 4 пикселя */
-    height: 24px; /* Высота — 24 пикселя */
-    font-size: 13px; /* Размер шрифта — 13 пикселей */
-    color: #fff; /* Белый цвет текста */
-}
-
-/* Иконки SVG */
-.ql-toolbar button svg {
-    width: 14px !important; /* Ширина иконки — 14 пикселей */
-    height: 14px !important; /* Высота иконки — 14 пикселей */
-}
-
-/* Активное состояние кнопок */
-.ql-toolbar button.ql-active,
-.ql-toolbar .ql-picker-label.ql-active,
-.ql-toolbar .ql-picker-item.ql-selected {
-    color: #fff; /* Белый цвет текста */
-    background-color: #1890ff; /* Голубой фон */
-    border-color: #1890ff; /* Голубая рамка */
-}
-
-/* Форматирование при наведении */
-.ql-toolbar button:hover,
-.ql-toolbar .ql-picker-label:hover {
-    background-color: #3a3d45; /* Серый фон при наведении */
-}
-
-/* Выпадающее меню */
-.ql-toolbar .ql-picker-options {
-    background-color: #2a2d36; /* Темный фон меню */
-    border: 1px solid #3a3d45; /* Тонкая серая рамка */
-    padding: 5px 0; /* Отступы сверху и снизу — 5 пикселей */
-    border-radius: 4px; /* Скругленные углы — 4 пикселя */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Тень под меню */
-}
-
-.ql-toolbar .ql-picker-options .ql-picker-item {
-    color: #fff; /* Белый цвет текста */
-    padding: 5px 8px; /* Отступы: 5 пикселей сверху/снизу, 8 слева/справа */
-    font-size: 13px; /* Размер шрифта — 13 пикселей */
-}
-
-.ql-toolbar .ql-picker-options .ql-picker-item:hover {
-    background-color: #3a3d45; /* Серый фон при наведении */
-}
-
-/* Исправляем цвет иконок */
-.ql-toolbar button svg path {
-    fill: #fff; /* Белый цвет иконок */
-}
-
-/* Переопределяем некоторые стили Quill по умолчанию */
-.ql-snow .ql-stroke {
-    stroke: #fff; /* Белый цвет линий в иконках */
-}
-
-.ql-snow .ql-fill {
-    fill: #fff; /* Белый цвет заливки в иконках */
-}
-
-.ql-snow.ql-toolbar button:hover .ql-stroke,
-.ql-snow.ql-toolbar button.ql-active .ql-stroke {
-    stroke: #fff; /* Белый цвет линий при наведении или активации */
-}
-
-.ql-snow.ql-toolbar button:hover .ql-fill,
-.ql-snow.ql-toolbar button.ql-active .ql-fill {
-    fill: #fff; /* Белый цвет заливки при наведении или активации */
-}
-
-.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
-    border-color: #1890ff; /* Голубая рамка при открытии списка */
-}
-
-/* Настраиваем контейнер Quill - убираем лишнюю прокрутку */
-.ql-container.ql-snow {
-    border: none; /* Убираем рамку */
-    font-size: 14px; /* Размер шрифта — 14 пикселей */
-    overflow-y: hidden !important; /* Отключаем прокрутку на внешнем контейнере */
-}
-
-/* Делаем редактор и его контейнер неэластичными */
-.ql-container {
-    flex: 0 0 auto; /* Контейнер не растягивается автоматически */
-}
-
-/* Сохраняем прокрутку только для самого редактора */
-.ql-editor {
-    color: #fff; /* Белый цвет текста */
-    min-height: 150px; /* Минимальная высота — 150 пикселей */
-    max-height: 400px; /* Максимальная высота — 400 пикселей */
-    overflow-y: auto !important; /* Прокрутка появляется, если текста много */
-}
-
-/* Стили для полосы прокрутки (только для .ql-editor) */
-.ql-editor::-webkit-scrollbar {
-    width: 8px; /* Ширина полосы прокрутки — 8 пикселей */
-}
-
-.ql-editor::-webkit-scrollbar-track {
-    background: #1e2129; /* Темный фон полосы */
-}
-
-.ql-editor::-webkit-scrollbar-thumb {
-    background-color: #3a3d45; /* Серый цвет ползунка */
-    border-radius: 4px; /* Скругленные углы ползунка */
-}
-
-/* Для Firefox */
-.ql-editor {
-    scrollbar-width: thin; /* Тонкая полоса прокрутки */
-    scrollbar-color: #3a3d45 #1e2129; /* Цвет ползунка и фона */
-}
-
-/* Область редактирования */
-#editor {
-    background-color: #1e2129; /* Темный фон редактора */
-    color: #fff; /* Белый цвет текста */
-    border-radius: 0 0 8px 8px; /* Скругленные углы только снизу */
-    border: 1px solid #3a3d45; /* Тонкая серая рамка */
-    padding: 12px; /* Внутренние отступы — 12 пикселей */
-    min-height: 300px; /* Минимальная высота — 150 пикселей */
-    max-height: none; /* Без ограничения максимальной высоты */
-    width: 100%; /* Ширина на весь контейнер */
-    box-sizing: border-box; /* Размеры включают рамку и отступы */
-    overflow-y: hidden !important; /* Отключаем прокрутку здесь */
-}
-
-/* Стили для кнопок действий */
-.editor-actions {
-    display: flex; /* Гибкое расположение кнопок */
-    justify-content: center; /* Кнопки по центру горизонтально */
-    gap: 20px; /* Расстояние между кнопками — 20 пикселей */
-    margin-top: 10px; /* Отступ сверху — 20 пикселей */
-    position: relative; /* Точное позиционирование кнопок */
-    bottom: 0; /* Прижимаем к низу контейнера */
-}
-
-.submit-btn {
-    background-color: #1890ff; /* Голубой фон кнопки */
-    color: #fff; /* Белый цвет текста */
-    border: none; /* Убираем рамку */
-    padding: 12px 30px; /* Отступы: 12 пикселей сверху/снизу, 30 слева/справа */
-    border-radius: 8px; /* Скругленные углы — 8 пикселей */
-    font-weight: bold; /* Жирный шрифт */
-    font-size: 16px; /* Размер шрифта — 16 пикселей */
-    cursor: pointer; /* Курсор как "рука" */
-    transition: 0.3s; /* Плавное изменение цвета за 0.3 секунды */
-}
-
-.submit-btn:hover {
-    background-color: #007acc; /* Темно-голубой фон при наведении */
-}
-
-.cancel-btn {
-    background-color: #3a3d45; /* Серый фон кнопки */
-    color: #fff; /* Белый цвет текста */
-    border: none; /* Убираем рамку */
-    padding: 12px 30px; /* Отступы: 12 пикселей сверху/снизу, 30 слева/справа */
-    border-radius: 8px; /* Скругленные углы — 8 пикселей */
-    font-weight: bold; /* Жирный шрифт */
-    font-size: 16px; /* Размер шрифта — 16 пикселей */
-    cursor: pointer; /* Курсор как "рука" */
-    transition: 0.3s; /* Плавное изменение цвета за 0.3 секунды */
-}
-
-.cancel-btn:hover {
-    background-color: #4a4d55; /* Светлее серый при наведении */
-}
-
-/* Для Mozilla Firefox - специальный стиль для боковой панели */
-@-moz-document url-prefix() {
-    .sidebar {
-        overflow-y: auto; /* Прокрутка по вертикали, если контента много */
-        scrollbar-width: thin; /* Тонкая полоса прокрутки */
-        scrollbar-color: #3a3d45 #1c1f26; /* Цвет ползунка и фона */
-    }
-
-    /* Дополнительные стили для скрытия индикатора ресайза в Firefox */
-    .sidebar::-moz-resizer {
-        opacity: 0; /* Скрываем "уголок" для изменения размера */
-    }
-}
-
-/* Стиль для кастомной полосы прокрутки в Webkit браузерах */
-.sidebar::-webkit-scrollbar {
-    width: 8px; /* Ширина полосы прокрутки — 8 пикселей */
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: #1c1f26; /* Темный фон полосы */
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #3a3d45; /* Серый цвет ползунка */
-    border-radius: 4px; /* Скругленные углы ползунка */
-}
-
-/* Явный стиль для элемента растягивания (Chrome) */
-.sidebar::-webkit-resizer {
-    background-color: #2a2d36; /* Темный фон "уголка" */
-    border-radius: 0 0 4px 0; /* Скругление правого нижнего угла */
-}
-
-/* Адаптивность для мобильных устройств */
-@media (max-width: 576px) {
-    .ql-toolbar.ql-snow {
-        overflow-x: scroll; /* Горизонтальная прокрутка панели инструментов */
-    }
-
-    .ql-toolbar .ql-formats {
-        margin-right: 5px; /* Отступ справа у групп кнопок — 5 пикселей */
-    }
-
-    .ql-toolbar button {
-        width: 24px; /* Ширина кнопок — 24 пикселя */
-        margin-right: 2px; /* Отступ справа — 2 пикселя */
-    }
-
-    .ql-toolbar .ql-picker {
-        margin-right: 2px; /* Отступ справа у списков — 2 пикселя */
-    }
-}
-
-/* Добавляем медиа-запрос для мобильных устройств */
-@media (max-width: 768px) {
-    .editor-layout {
-        flex-direction: column; /* Элементы выстраиваются друг под другом */
-    }
-
-    .sidebar {
-        width: calc(100% - 40px); /* Ширина почти на весь экран с учетом отступов */
-        position: relative; /* Точное позиционирование */
-        top: 0; /* Прижимаем к верху */
-        margin-bottom: 20px; /* Отступ снизу — 20 пикселей */
-        resize: none; /* Нельзя менять размер */
-    }
-
-    .editor-wrapper {
-        width: calc(100% - 60px); /* Ширина почти на весь экран с учетом отступов */
-    }
-
-    .editor-actions {
-        flex-direction: column; /* Кнопки друг под другом */
-    }
-
-    .cancel-btn, .submit-btn {
-        width: 100%; /* Кнопки на всю ширину */
-    }
-}
-
-/* Стилизация drag-зоны */
-#editor.drag-over {
-    outline: 2px dashed #1890ff;
-    outline-offset: -8px;
-    background-color: #1a1f28;
+.carousel-nav.next {
+    right: -20px;
 }
