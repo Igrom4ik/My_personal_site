@@ -14,7 +14,9 @@ form.addEventListener('submit', async function(event) {
         });
 
         if (!response.ok) {
-            throw new Error('Auth failed');
+            const err = new Error('Auth failed');
+            err.status = response.status;
+            throw err;
         }
 
         const data = await response.json();
@@ -26,6 +28,11 @@ form.addEventListener('submit', async function(event) {
             window.location.href = '../dashboard.html';
         }
     } catch (e) {
+        if (e.status === 401) {
+            errorMessage.textContent = 'Неверное имя пользователя или пароль';
+        } else {
+            errorMessage.textContent = 'Не удалось подключиться к серверу';
+        }
         errorMessage.style.display = 'block';
     }
 });
