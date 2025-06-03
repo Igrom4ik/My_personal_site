@@ -15,11 +15,20 @@ CORS(app)
 # Секреты из .env
 JWT_SECRET = os.getenv("JWT_SECRET", "changeme")
 
-# Простой словарь пользователей (логин: пароль)
-USERS = {
-    "admin": "admin",       # <-- логин и пароль
-    "editor": "editor123"
-}
+# Файл с пользователями
+USERS_FILE = os.path.join(os.path.dirname(__file__), "../data/users.json")
+
+# Загрузка пользователей из файла или создание по умолчанию
+if os.path.exists(USERS_FILE):
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
+        USERS = json.load(f)
+else:
+    USERS = {
+        "admin": {"password": "admin", "must_change": True},
+        "editor": {"password": "editor123", "must_change": False}
+    }
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
+        json.dump(USERS, f, ensure_ascii=False, indent=2)
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../data/posts.json")
 
@@ -56,7 +65,8 @@ def login():
     if not username or not password:
         return jsonify({"error": "Имя пользователя и пароль обязательны"}), 400
 
-    if USERS.get(username) != password:
+    user = USERS.get(username)
+    if not user or user.get("password") != password:
         return jsonify({"error": "Неверные данные"}), 401
 
     token = jwt.encode(
@@ -68,7 +78,11 @@ def login():
         algorithm="HS256"
     )
 
-    return jsonify({"token": token})
+    response = {"token": token}
+    if user.get("must_change"):
+        response["must_change"] = True
+
+    return jsonify(response)
 
 
 # ==== Получение постов ====
@@ -94,6 +108,39 @@ def save_posts():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": "Ошибка сохранения постов", "details": str(e)}), 500
+
+
+# ==== Изменение логина и пароля ====
+@app.post("/api/change_credentials")
+@authenticate_token
+def change_credentials():
+    auth_header = request.headers.get("Authorization", "")
+    token = auth_header.replace("Bearer ", "")
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+    except jwt.InvalidTokenError:
+        return jsonify({"error": "Неверный токен"}), 403
+
+    current_user = payload.get("user")
+    data = request.get_json()
+    new_username = data.get("username")
+    new_password = data.get("password")
+
+    if not new_username or not new_password:
+        return jsonify({"error": "Имя пользователя и пароль обязательны"}), 400
+
+    user_info = USERS.pop(current_user, None)
+    if not user_info:
+        return jsonify({"error": "Пользователь не найден"}), 404
+
+    user_info["password"] = new_password
+    user_info["must_change"] = False
+    USERS[new_username] = user_info
+
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
+        json.dump(USERS, f, ensure_ascii=False, indent=2)
+
+    return jsonify({"success": True})
 
 
 # ==== Запуск ====

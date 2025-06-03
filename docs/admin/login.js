@@ -20,7 +20,11 @@ form.addEventListener('submit', async function(event) {
         const data = await response.json();
         localStorage.setItem('token', data.token);
         localStorage.setItem('isAuthenticated', 'true');
-        window.location.href = '../dashboard.html';
+        if (data.must_change) {
+            window.location.href = 'change-credentials.html';
+        } else {
+            window.location.href = '../dashboard.html';
+        }
     } catch (e) {
         errorMessage.style.display = 'block';
     }
