@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba20ff57-099d-42ed-9f1c-2732aad36f99" name="Changes" comment="Обновление проекта">
-      <change afterPath="$PROJECT_DIR$/www/blog-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/about.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/animations.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/blog-post.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/contact.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/footer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/hero.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/css/responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/js/texts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my_cite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_cite.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/admin/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/admin/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/admin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/admin/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/admin/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/blog/post-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/post-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/blog/post-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/post-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/blog/posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/www/blog/posts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/css/blog.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/blog.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/css/portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/portfolio.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/blog-editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/blog-editor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/posts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +41,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Igrom4ek/My-cite.git&quot;,
+    &quot;url&quot;: &quot;git@github.com:Igrom4ik/My_personal_site.git&quot;,
     &quot;accountId&quot;: &quot;47e3d1c6-1f51-4dfb-9f8c-b62eaf4ac622&quot;
   }
 }</component>
@@ -74,29 +52,32 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2ugYf3LSlbEDqiD16f9h2sgjNOa" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Dropbox/my_cite/blog&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/My_personal_site",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/igrom/AppData/Roaming/JetBrains/WebStorm2025.1/node/versions/22.16.0/node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Dropbox\my_cite\blog" />
@@ -107,10 +88,39 @@
       <recent name="F:\Dropbox\my_cite\css" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="my_cite" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
       </set>
     </attachedChunks>
   </component>
@@ -124,6 +134,10 @@
       <updated>1742671783736</updated>
       <workItem from="1742671784718" duration="21995000" />
       <workItem from="1744553250132" duration="7993000" />
+      <workItem from="1748986364557" duration="321000" />
+      <workItem from="1748986720644" duration="573000" />
+      <workItem from="1748987312718" duration="604000" />
+      <workItem from="1748987934250" duration="1390000" />
     </task>
     <task id="LOCAL-00001" summary="My Cite">
       <option name="closed" value="true" />
