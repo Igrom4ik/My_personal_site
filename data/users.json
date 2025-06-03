@@ -1,0 +1,4 @@
+{
+  "admin": {"password": "admin", "must_change": true},
+  "editor": {"password": "editor123", "must_change": false}
+}
