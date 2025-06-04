@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory, abort
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -9,7 +9,8 @@ import datetime
 # Загрузка переменных окружения
 load_dotenv()
 
-app = Flask(__name__)
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "../docs")
+app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="")
 CORS(app)
 
 # Секреты из .env
@@ -141,6 +142,20 @@ def change_credentials():
         json.dump(USERS, f, ensure_ascii=False, indent=2)
 
     return jsonify({"success": True})
+
+
+# ==== Раздача статики и HTML ====
+@app.route("/", defaults={"path": "index.html"})
+@app.route("/<path:path>")
+def static_files(path):
+    if path.startswith("api/"):
+        abort(404)
+    full_path = os.path.join(app.static_folder, path)
+    if os.path.isdir(full_path):
+        path = os.path.join(path, "index.html")
+    if not os.path.exists(os.path.join(app.static_folder, path)):
+        path = "index.html"
+    return send_from_directory(app.static_folder, path)
 
 
 # ==== Запуск ====
