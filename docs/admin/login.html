@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <title>Вход в админ-панель</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<div class="settings-panel">
+    <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    <select id="languageSelect" class="language-select">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="zh">中文</option>
+    </select>
+</div>
 <div class="login-container">
-    <h2>Вход в админ-панель</h2>
+    <h2 id="login-title">Вход в админ-панель</h2>
     <form id="login-form">
-        <label for="username">Имя пользователя:</label>
+        <label id="login-username-label" for="username">Имя пользователя:</label>
         <input type="text" id="username" required>
-        <label for="password">Пароль:</label>
+        <label id="login-password-label" for="password">Пароль:</label>
         <input type="password" id="password" required>
-        <button type="submit">Войти</button>
+        <button type="submit" id="login-submit">Войти</button>
         <p id="error-message" style="color: red; display: none;">Неверные данные</p>
     </form>
 </div>
 <script src="login.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>
