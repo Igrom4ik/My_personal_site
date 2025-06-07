@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -18,7 +18,7 @@ JWT_SECRET = os.getenv("JWT_SECRET", "changeme")
 
 # Пути к файлам
 USERS_FILE = os.path.join(os.path.dirname(__file__), "../data/users.json")
-DATA_FILE = os.path.join(os.path.dirname(__file__), "../data/posts.json")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "../docs/blog/posts.json")
 
 # Загрузка или создание пользователей
 if os.path.exists(USERS_FILE):
@@ -95,6 +95,13 @@ def blog_post_2():
 @app.get("/portfolio/work_1")
 def portfolio_work_1():
     return render_template("portfolio/work_1.html")
+
+@app.get("/blog/posts.json")
+def blog_posts_json():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "../docs/blog"),
+        "posts.json"
+    )
 
 # ==== Логин ====
 @app.post("/api/login")

@@ -26,3 +26,5 @@ The project starts with two users defined in `data/users.json`:
 - `editor` / `editor123`
 
 The first login as `admin` requires the credentials to be changed. After a successful login with the default `admin` credentials, the browser is redirected to `change-credentials.html`.
+
+Blog posts are stored in `docs/blog/posts.json` and served by the Flask application.
