@@ -98,4 +98,8 @@
     .carousel-nav {
         display: none;
     }
+
+    .blog-post {
+        padding: 30px 20px;
+    }
 }
