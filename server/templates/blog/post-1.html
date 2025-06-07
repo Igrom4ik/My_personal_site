@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как создать реалистичное освещение в Unreal Engine 5 | Игорь Унгурянов</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/blog-post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="{{ url_for('index') }}">Igor Unguryanov</a>
+        </div>
+        <div class="settings-panel">
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <select id="languageSelect" class="language-select">
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+        <div class="hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="mobileMenu">
+            <ul class="lang-ru">
+                <li><a href="{{ url_for('index') }}#home">Главная</a></li>
+                <li><a href="{{ url_for('index') }}#about">Обо мне</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">Портфолио</a></li>
+                <li><a href="{{ url_for('index') }}#blog">Блог</a></li>
+                <li><a href="{{ url_for('index') }}#contact">Контакты</a></li>
+            </ul>
+            <ul class="lang-en" style="display: none;">
+                <li><a href="{{ url_for('index') }}#home">Home</a></li>
+                <li><a href="{{ url_for('index') }}#about">About Me</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">Portfolio</a></li>
+                <li><a href="{{ url_for('index') }}#blog">Blog</a></li>
+                <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+            </ul>
+            <ul class="lang-zh" style="display: none;">
+                <li><a href="{{ url_for('index') }}#home">首页</a></li>
+                <li><a href="{{ url_for('index') }}#about">关于我</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">作品集</a></li>
+                <li><a href="{{ url_for('index') }}#blog">博客</a></li>
+                <li><a href="{{ url_for('index') }}#contact">联系方式</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Blog Header -->
+<div class="blog-header">
+    <div class="container">
+        <h1>Как создать реалистичное освещение в Unreal Engine 5</h1>
+        <p>22 Марта, 2025 | 3D Environment Artist</p>
+    </div>
+</div>
+
+<!-- Blog Post Content -->
+<div class="blog-post">
+    <div class="blog-meta">
+        <span><i class="fas fa-user"></i> Игорь Унгурянов</span>
+        <span><i class="fas fa-calendar"></i> 22 Марта, 2025</span>
+        <span><i class="fas fa-tag"></i> Unreal Engine, Освещение, Визуализация</span>
+    </div>
+
+    <p>В этой статье я расскажу о техниках создания реалистичного освещения в Unreal Engine 5 с использованием новой системы Lumen. Мы рассмотрим основные принципы работы с глобальным освещением и настройки, которые помогут вам достичь кинематографического качества в ваших проектах.</p>
+
+    <img src="../images/blog/post-1-img1.jpg" alt="Lumen в Unreal Engine 5">
+
+    <h2>Что такое Lumen?</h2>
+
+    <p>Lumen — это новая система глобального освещения в режиме реального времени, представленная в Unreal Engine 5. Она заменяет статичное и полустатичное освещение предыдущих версий и обеспечивает полностью динамическое глобальное освещение и отражения.</p>
+
+    <p>Основные преимущества Lumen:</p>
+    <ul>
+        <li>Полностью динамическое глобальное освещение</li>
+        <li>Мгновенная реакция на изменения источников света</li>
+        <li>Реалистичные отражения без использования кубических карт</li>
+        <li>Высокая производительность даже на средних ПК</li>
+        <li>Простота настройки</li>
+    </ul>
+
+    <h2>Начало работы с Lumen</h2>
+
+    <p>Для начала работы с Lumen необходимо активировать эту систему в настройках проекта:</p>
+
+    <ol>
+        <li>Откройте настройки проекта (Edit > Project Settings)</li>
+        <li>Перейдите в раздел Engine > Rendering</li>
+        <li>Найдите секцию Global Illumination</li>
+        <li>Установите Dynamic Global Illumination Method на Lumen</li>
+        <li>Установите Reflections Method на Lumen</li>
+    </ol>
+
+    <p>После этого Lumen будет активирован в вашем проекте, и вы сможете начать работу с динамическим освещением.</p>
+
+    <h2>Настройка источников света</h2>
+
+    <p>Для создания реалистичного освещения в Unreal Engine 5, важно правильно настроить источники света. Рассмотрим основные типы и их настройки:</p>
+
+    <h3>Directional Light (Направленный свет)</h3>
+
+    <p>Направленный свет имитирует солнце или другой далекий источник света. Основные настройки:</p>
+
+    <ul>
+        <li><strong>Intensity (Интенсивность)</strong>: для имитации солнца используйте значения от 5 до 20</li>
+        <li><strong>Light Color (Цвет света)</strong>: для дневного солнца используйте слегка желтоватые оттенки, для заката - оранжевые</li>
+        <li><strong>Temperature (Температура)</strong>: солнечный свет имеет температуру около 6500K</li>
+        <li><strong>Atmosphere Sun Light</strong>: включите для более реалистичного взаимодействия с атмосферой</li>
+    </ul>
+
+    <img src="../images/blog/post-1-img2.jpg" alt="Настройка направленного света">
+
+    <h3>Point Light (Точечный свет)</h3>
+
+    <p>Точечный свет имитирует лампы, свечи и другие локальные источники света.</p>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="https://www.artstation.com/igorunguryanov" target="_blank" rel="noopener noreferrer" title="ArtStation">
+                <i class="fab fa-artstation"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/igorunguryanov" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/igorunguryanov" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/@igorunguryanov" target="_blank" rel="noopener noreferrer" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2025 Игорь Унгурянов. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- JavaScript файлы -->
+<script src="../js/main.js"></script>
+</body>
+</html>

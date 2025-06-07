@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -10,7 +10,7 @@ from functools import wraps
 # Загрузка переменных окружения
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../docs", static_url_path="")
 CORS(app)
 
 # Секрет JWT
@@ -54,19 +54,39 @@ def authenticate_token(func):
 
     return wrapper
 
-# ==== Корневой маршрут ====
+# ==== Страницы сайта ====
+
 @app.get("/")
 def index():
-    return """
-    <h1>Сервер Flask запущен</h1>
-    <p>API доступен по адресу <code>/api/...</code></p>
-    <ul>
-        <li><code>POST /api/login</code> — авторизация</li>
-        <li><code>GET /api/posts</code> — получить посты (нужен токен)</li>
-        <li><code>POST /api/posts</code> — сохранить посты (нужен токен)</li>
-        <li><code>POST /api/change_credentials</code> — смена логина/пароля</li>
-    </ul>
-    """
+    return render_template("index.html")
+
+@app.get("/blog-view")
+def blog_view():
+    return render_template("blog-view.html")
+
+@app.get("/blog-editor")
+def blog_editor():
+    return render_template("blog-editor.html")
+
+@app.get("/blog")
+def blog_page():
+    return render_template("blog.html")
+
+@app.get("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.get("/admin/login")
+def admin_login():
+    return render_template("admin/login.html")
+
+@app.get("/admin/change-credentials")
+def admin_change_credentials():
+    return render_template("admin/change-credentials.html")
+
+@app.get("/blog/post-<int:post_id>")
+def blog_post(post_id):
+    return render_template(f"blog/post-{post_id}.html")
 
 # ==== Логин ====
 @app.post("/api/login")

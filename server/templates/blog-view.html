@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/blog-post.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="{{ url_for('index') }}">Igor Unguryanov</a>
+        </div>
+        <div class="settings-panel">
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <select id="languageSelect" class="language-select">
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+        <div class="hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="mobileMenu">
+            <ul class="lang-ru">
+                <li><a href="{{ url_for('index') }}#home">Главная</a></li>
+                <li><a href="{{ url_for('index') }}#about">Обо мне</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">Портфолио</a></li>
+                <li><a href="{{ url_for('blog_view') }}">Блог</a></li>
+                <li><a href="{{ url_for('index') }}#contact">Контакты</a></li>
+            </ul>
+            <ul class="lang-en" style="display: none;">
+                <li><a href="{{ url_for('index') }}#home">Home</a></li>
+                <li><a href="{{ url_for('index') }}#about">About Me</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">Portfolio</a></li>
+                <li><a href="{{ url_for('blog_view') }}">Blog</a></li>
+                <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+            </ul>
+            <ul class="lang-zh" style="display: none;">
+                <li><a href="{{ url_for('index') }}#home">首页</a></li>
+                <li><a href="{{ url_for('index') }}#about">关于我</a></li>
+                <li><a href="{{ url_for('index') }}#portfolio">作品集</a></li>
+                <li><a href="{{ url_for('blog_view') }}">博客</a></li>
+                <li><a href="{{ url_for('index') }}#contact">联系方式</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section id="blog">
+    <div class="container">
+        <div class="section-title">
+            <h2>Блог</h2>
+        </div>
+        <div id="posts-list" class="blog-grid"></div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="https://www.artstation.com/igorunguryanov"><i class="fab fa-artstation"></i></a>
+            <a href="https://www.linkedin.com/in/igorunguryanov"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/igorunguryanov"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@igorunguryanov"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2025 Игорь Унгурянов. Все права защищены.</p>
+        <p><a href="admin/login.html">Админ-панель</a></p>
+    </div>
+</footer>
+<script>
+    fetch('blog/posts.json')
+        .then(response => response.json())
+        .then(posts => {
+            const postsList = document.getElementById('posts-list');
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-card';
+                postElement.innerHTML = `
+                    <div class="blog-img">
+                        <img src="${post.thumbnail || 'images/placeholder.jpg'}" alt="${post.title}">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-date">${post.date}</p>
+                        <p>${post.content.substring(0, 100)}...</p>
+                        <a href="blog/post-${post.id}.html" class="read-more">Читать далее</a>
+                    </div>
+                `;
+                postsList.appendChild(postElement);
+            });
+        })
+        .catch(error => console.error('Ошибка загрузки постов:', error));
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

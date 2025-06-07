@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Игорь Унгурянов | 3D Environment Artist</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Подключаем шрифты для раздела "Обо мне" -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap">
+</head>
+<body>
+<header>
+  <div class="container header-content">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">Igor Unguryanov</a>
+    </div>
+    <div class="settings-panel">
+      <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <select id="languageSelect" class="language-select">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+    <div class="hamburger" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav id="mobileMenu">
+      <ul class="lang-ru">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="{{ url_for('blog_view') }}">Блог</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <ul class="lang-en" style="display: none;">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="{{ url_for('blog_view') }}">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <ul class="lang-zh" style="display: none;">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#about">关于我</a></li>
+        <li><a href="#portfolio">作品集</a></li>
+        <li><a href="{{ url_for('blog_view') }}">博客</a></li>
+        <li><a href="#contact">联系方式</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Игорь Унгурянов</h1>
+    <p>3D Environment Artist</p>
+    <a href="#portfolio" class="btn">Смотреть работы</a>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="about-title">Обо мне</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-img">
+        <img src="images/me/530900651.jpeg" alt="Обо мне">
+      </div>
+      <div class="about-text">
+        <h3 id="about-subtitle"></h3>
+        <p id="about-text1"></p>
+        <p id="about-text2"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="portfolio">
+  <div class="container">
+    <div class="section-title">
+      <h2>Портфолио</h2>
+    </div>
+    <p>Ваши работы здесь.</p>
+  </div>
+</section>
+<section id="blog">
+  <div class="container">
+    <div class="section-title">
+      <h2>Блог</h2>
+    </div>
+    <div class="blog-carousel">
+      <button class="carousel-nav prev"><i class="fas fa-chevron-left"></i></button>
+      <div id="blog-posts" class="blog-posts"></div>
+      <button class="carousel-nav next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <a href="{{ url_for('blog_view') }}" class="btn">Перейти в блог</a>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <div class="section-title">
+      <h2>Контакты</h2>
+    </div>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Свяжитесь со мной</h3>
+        <p>Если вы заинтересованы в сотрудничестве или у вас есть вопросы - не стесняйтесь обращаться.</p>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <p><a href="/cdn-cgi/l/email-protection#edc8d5ccc0ddc1c8edc8c0ccc4c183cec2c0"><span class="__cf_email__" data-cfemail="41479606c716d6041646c60686d2f626e6c">[email&#160;protected]</span></a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Телефон</h4>
+            <p>+123 456 7890</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Локация</h4>
+            <p>Москва, Россия</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Ваше имя" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Ваш Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Тема" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Ваше сообщение" required></textarea>
+          </div>
+          <button type="submit" class="btn">Отправить сообщение</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="social-links">
+      <a href="https://www.artstation.com/igorunguryanov"><i class="fab fa-artstation"></i></a>
+      <a href="https://www.linkedin.com/in/igorunguryanov"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/igorunguryanov"><i class="fab fa-github"></i></a>
+      <a href="https://www.youtube.com/@igorunguryanov"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 Игорь Унгурянов. Все права защищены.</p>
+    <p><a href="admin/login.html">Админ-панель</a></p>
+  </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="js/main.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92fd9efbbe557b94',t:'MTc0NDU3NTE3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
