@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Админ-панель</title>
-  <link rel="stylesheet" href="admin/admin.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin/admin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
     <p id="dash-instruction">Выберите действие в меню.</p>
   </div>
 </div>
-<script src="admin/dashboard.js"></script>
-<script src="js/main.js"></script>
+<script src="{{ url_for('static', filename='admin/dashboard.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
