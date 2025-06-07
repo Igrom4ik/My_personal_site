@@ -487,6 +487,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Карусель блога
     const blogPostsContainer = document.getElementById('blog-posts');
     if (blogPostsContainer) {
+        const staticBase = "{{ url_for('static', filename='') }}";
         fetch('blog/posts.json')
             .then(response => response.json())
             .then(posts => {
@@ -495,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     postElement.className = 'blog-card';
                     postElement.innerHTML = `
                         <div class="blog-img">
-                            <img src="${post.thumbnail || 'images/placeholder.jpg'}" alt="${post.title}">
+                            <img src="${staticBase}${post.thumbnail || 'images/placeholder.jpg'}" alt="${post.title}">
                         </div>
                         <div class="blog-content">
                             <h3 class="blog-title">${post.title}</h3>
