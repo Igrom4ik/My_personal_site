@@ -36,21 +36,21 @@
                 <li><a href="index.html#home">Главная</a></li>
                 <li><a href="index.html#about">Обо мне</a></li>
                 <li><a href="index.html#portfolio">Портфолио</a></li>
-                <li><a href="blog-view.html">Блог</a></li>
+                <li><a href="/blog-view">Блог</a></li>
                 <li><a href="index.html#contact">Контакты</a></li>
             </ul>
             <ul class="lang-en" style="display: none;">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About Me</a></li>
                 <li><a href="index.html#portfolio">Portfolio</a></li>
-                <li><a href="blog-view.html">Blog</a></li>
+                <li><a href="/blog-view">Blog</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <ul class="lang-zh" style="display: none;">
                 <li><a href="index.html#home">首页</a></li>
                 <li><a href="index.html#about">关于我</a></li>
                 <li><a href="index.html#portfolio">作品集</a></li>
-                <li><a href="blog-view.html">博客</a></li>
+                <li><a href="/blog-view">博客</a></li>
                 <li><a href="index.html#contact">联系方式</a></li>
             </ul>
         </nav>
@@ -73,7 +73,7 @@
             <a href="https://www.youtube.com/@igorunguryanov"><i class="fab fa-youtube"></i></a>
         </div>
         <p>© 2025 Игорь Унгурянов. Все права защищены.</p>
-        <p><a href="admin/login.html">Админ-панель</a></p>
+        <p><a href="/admin/login">Админ-панель</a></p>
     </div>
 </footer>
 <script>
@@ -92,7 +92,7 @@
                         <h3 class="blog-title">${post.title}</h3>
                         <p class="blog-date">${post.date}</p>
                         <p>${post.content.substring(0, 100)}...</p>
-                        <a href="blog/post-${post.id}.html" class="read-more">Читать далее</a>
+                        <a href="/blog/post-${post.id}" class="read-more">Читать далее</a>
                     </div>
                 `;
                 postsList.appendChild(postElement);
