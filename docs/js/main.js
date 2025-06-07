@@ -245,6 +245,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 'zh': {
                     'copyright': '© 2025 伊戈尔·温古里亚诺夫。保留所有权利。'
                 }
+            },
+            'admin': {
+                'ru': {
+                    'loginTitle': 'Вход в админ-панель',
+                    'loginUser': 'Имя пользователя:',
+                    'loginPass': 'Пароль:',
+                    'loginBtn': 'Войти',
+                    'credTitle': 'Новые логин и пароль',
+                    'credUser': 'Новый логин:',
+                    'credPass': 'Новый пароль:',
+                    'credBtn': 'Сохранить',
+                    'dashTitle': 'Админ-панель',
+                    'dashWelcome': 'Добро пожаловать!',
+                    'dashInstr': 'Выберите действие в меню.',
+                    'dashBlog': 'Редактор блога',
+                    'dashPortfolio': 'Управление портфолио',
+                    'dashSettings': 'Настройки сайта'
+                },
+                'en': {
+                    'loginTitle': 'Admin Login',
+                    'loginUser': 'Username:',
+                    'loginPass': 'Password:',
+                    'loginBtn': 'Login',
+                    'credTitle': 'Change Credentials',
+                    'credUser': 'New Username:',
+                    'credPass': 'New Password:',
+                    'credBtn': 'Save',
+                    'dashTitle': 'Admin Panel',
+                    'dashWelcome': 'Welcome!',
+                    'dashInstr': 'Choose an action from the menu.',
+                    'dashBlog': 'Blog Editor',
+                    'dashPortfolio': 'Manage Portfolio',
+                    'dashSettings': 'Site Settings'
+                },
+                'zh': {
+                    'loginTitle': '登陆后台',
+                    'loginUser': '用户名:',
+                    'loginPass': '密码:',
+                    'loginBtn': '登陆',
+                    'credTitle': '新的登录名和密码',
+                    'credUser': '新登录名:',
+                    'credPass': '新密码:',
+                    'credBtn': '保存',
+                    'dashTitle': '管理面板',
+                    'dashWelcome': '欢迎!',
+                    'dashInstr': '在菜单中选择操作。',
+                    'dashBlog': '博客编辑器',
+                    'dashPortfolio': '管理作品集',
+                    'dashSettings': '站点设置'
+                }
             }
         };
 
@@ -311,6 +361,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
+
+        // Тексты админ-панели
+        const loginTitle = document.getElementById('login-title');
+        if (loginTitle) loginTitle.textContent = texts.admin[language].loginTitle;
+        const loginUserLabel = document.getElementById('login-username-label');
+        if (loginUserLabel) loginUserLabel.textContent = texts.admin[language].loginUser;
+        const loginPassLabel = document.getElementById('login-password-label');
+        if (loginPassLabel) loginPassLabel.textContent = texts.admin[language].loginPass;
+        const loginBtn = document.getElementById('login-submit');
+        if (loginBtn) loginBtn.textContent = texts.admin[language].loginBtn;
+
+        const credTitle = document.getElementById('cred-title');
+        if (credTitle) credTitle.textContent = texts.admin[language].credTitle;
+        const credUserLabel = document.getElementById('cred-username-label');
+        if (credUserLabel) credUserLabel.textContent = texts.admin[language].credUser;
+        const credPassLabel = document.getElementById('cred-password-label');
+        if (credPassLabel) credPassLabel.textContent = texts.admin[language].credPass;
+        const credBtn = document.getElementById('cred-submit');
+        if (credBtn) credBtn.textContent = texts.admin[language].credBtn;
+
+        const dashTitle = document.getElementById('dash-title');
+        if (dashTitle) dashTitle.textContent = texts.admin[language].dashTitle;
+        const dashWelcome = document.getElementById('dash-welcome');
+        if (dashWelcome) dashWelcome.textContent = texts.admin[language].dashWelcome;
+        const dashInstr = document.getElementById('dash-instruction');
+        if (dashInstr) dashInstr.textContent = texts.admin[language].dashInstr;
+        const dashBlogLink = document.getElementById('dash-blog-link');
+        if (dashBlogLink) dashBlogLink.textContent = texts.admin[language].dashBlog;
+        const dashPortfolioLink = document.getElementById('dash-portfolio-link');
+        if (dashPortfolioLink) dashPortfolioLink.textContent = texts.admin[language].dashPortfolio;
+        const dashSettingsLink = document.getElementById('dash-settings-link');
+        if (dashSettingsLink) dashSettingsLink.textContent = texts.admin[language].dashSettings;
     }
 
     // Портфолио фильтр
