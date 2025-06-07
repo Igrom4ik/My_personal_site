@@ -16,7 +16,7 @@ Start the Flask server with:
 python server/app.py
 ```
 
-The application will run on port `3001` by default.
+The application will run on port `3001`.
 
 ## Default Credentials
 
